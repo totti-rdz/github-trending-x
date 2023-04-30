@@ -11,6 +11,12 @@ axios(url)
       repos.push($(elem).text().replace(/\s+/g, ""))
     );
 
+    const links = [];
+    $("h2.h3 a").each((_, elem) => {
+      const link = $(elem).attr("href");
+      links.push(link);
+    });
     console.log("repos", repos);
+    console.log("links", links);
   })
   .catch(console.error);
