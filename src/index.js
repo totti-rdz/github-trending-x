@@ -2,6 +2,7 @@ import axios from "axios";
 import { load } from "cheerio";
 
 const url = "https://github.com/trending/javascript?since=daily";
+
 axios(url)
   .then((response) => {
     const html = response.data;
