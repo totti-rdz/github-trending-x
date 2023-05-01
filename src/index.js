@@ -15,8 +15,9 @@ axios(url)
         .text()
         .replace(/\s+/g, "")
         .split("/");
+      const description = $(elem).find("p").text().trim();
       const link = titleContainer.attr("href");
-      repos.push({ id: idx, owner, title, link });
+      repos.push({ id: idx, owner, title, description, link });
     });
 
     console.log("repos", repos);
