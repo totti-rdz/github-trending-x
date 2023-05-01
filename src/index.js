@@ -8,9 +8,14 @@ axios(url)
     const html = response.data;
     const $ = load(html);
     const repos = [];
-    $("h2.h3 a").each((idx, elem) => {
-      const [owner, title] = $(elem).text().replace(/\s+/g, "").split("/");
-      const link = $(elem).attr("href");
+
+    $(".Box-row").each((idx, elem) => {
+      const titleContainer = $(elem).find("h2.h3 a");
+      const [owner, title] = titleContainer
+        .text()
+        .replace(/\s+/g, "")
+        .split("/");
+      const link = titleContainer.attr("href");
       repos.push({ id: idx, owner, title, link });
     });
 
