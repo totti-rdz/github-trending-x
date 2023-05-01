@@ -24,6 +24,14 @@ axios(url)
           .trim()
           .replace(",", "")
       );
+      const forks = Number(
+        $(elem)
+          .find("div.f6.color-fg-muted.mt-2 a.Link--muted.d-inline-block.mr-3")
+          .last()
+          .text()
+          .trim()
+          .replace(",", "")
+      );
       const link = titleContainer.attr("href");
       repos.push({
         id: idx,
@@ -31,6 +39,7 @@ axios(url)
         title,
         description,
         stars,
+        forks,
         link,
       });
     });
