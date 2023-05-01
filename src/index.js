@@ -9,9 +9,9 @@ axios(url)
     const $ = load(html);
     const repos = [];
     $("h2.h3 a").each((idx, elem) => {
-      const text = $(elem).text().replace(/\s+/g, "");
+      const [owner, title] = $(elem).text().replace(/\s+/g, "").split("/");
       const link = $(elem).attr("href");
-      repos.push({ id: idx, text, link });
+      repos.push({ id: idx, owner, title, link });
     });
 
     console.log("repos", repos);
