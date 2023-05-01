@@ -8,16 +8,12 @@ axios(url)
     const html = response.data;
     const $ = load(html);
     const repos = [];
-    $("h2.h3 a").each((_, elem) =>
-      repos.push($(elem).text().replace(/\s+/g, ""))
-    );
-
-    const links = [];
-    $("h2.h3 a").each((_, elem) => {
+    $("h2.h3 a").each((idx, elem) => {
+      const text = $(elem).text().replace(/\s+/g, "");
       const link = $(elem).attr("href");
-      links.push(link);
+      repos.push({ id: idx, text, link });
     });
+
     console.log("repos", repos);
-    console.log("links", links);
   })
   .catch(console.error);
