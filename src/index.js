@@ -16,8 +16,23 @@ axios(url)
         .replace(/\s+/g, "")
         .split("/");
       const description = $(elem).find("p").text().trim();
+      const stars = Number(
+        $(elem)
+          .find("div.f6.color-fg-muted.mt-2 a.Link--muted.d-inline-block.mr-3")
+          .first()
+          .text()
+          .trim()
+          .replace(",", "")
+      );
       const link = titleContainer.attr("href");
-      repos.push({ id: idx, owner, title, description, link });
+      repos.push({
+        id: idx,
+        owner,
+        title,
+        description,
+        stars,
+        link,
+      });
     });
 
     console.log("repos", repos);
