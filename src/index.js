@@ -27,22 +27,10 @@ axios(url)
         .find(selectors.description)
         .text()
         .trim();
-      const stars = Number(
-        $(container)
-          .find(selectors.additionalInfo)
-          .first()
-          .text()
-          .trim()
-          .replace(",", "")
-      );
-      const forks = Number(
-        $(container)
-          .find(selectors.additionalInfo)
-          .last()
-          .text()
-          .trim()
-          .replace(",", "")
-      );
+      const [stars, forks] = $(container)
+        .find(selectors.additionalInfo)
+        .map((_, elem) => Number($(elem).text().trim().replace(",", "")))
+        .toArray();
       const link = titleContainer.attr("href");
       repos.push({
         id: idx,
@@ -55,6 +43,6 @@ axios(url)
       });
     });
 
-    console.log("repos", repos);
+    console.log("repos", repos[0]);
   })
   .catch(console.error);
