@@ -9,6 +9,7 @@ const selectors = {
   description: "p",
   additionalInfo:
     "div.f6.color-fg-muted.mt-2 a.Link--muted.d-inline-block.mr-3",
+  ownerImgSrc: "img.avatar.mb-1.avatar-user",
 };
 
 axios(url)
@@ -32,6 +33,10 @@ axios(url)
         .map((_, elem) => Number($(elem).text().trim().replace(",", "")))
         .toArray();
       const link = titleContainer.attr("href");
+      const ownerImgSrc = $(container)
+        .find(selectors.ownerImgSrc)
+        .first()
+        .attr("src");
       repos.push({
         id: idx,
         owner,
@@ -40,9 +45,10 @@ axios(url)
         stars,
         forks,
         link,
+        ownerImgSrc,
       });
     });
 
-    console.log("repos", repos[0]);
+    console.log("repos", repos[0].ownerImgSrc);
   })
   .catch(console.error);
