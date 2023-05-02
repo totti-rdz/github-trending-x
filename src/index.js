@@ -49,6 +49,6 @@ axios(url)
       });
     });
 
-    console.log("repos", repos[0].ownerImgSrc);
+    console.log("repos", repos[0]);
   })
   .catch(console.error);
