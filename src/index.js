@@ -36,7 +36,8 @@ axios(url)
       const ownerImgSrc = $(container)
         .find(selectors.ownerImgSrc)
         .first()
-        .attr("src");
+        .attr("src")
+        ?.replace("s=40&", "");
       repos.push({
         id: idx,
         owner,
