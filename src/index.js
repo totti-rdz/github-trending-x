@@ -17,15 +17,18 @@ axios(url)
     const $ = load(html);
     const repos = [];
 
-    $(selectors.container).each((idx, elem) => {
-      const titleContainer = $(elem).find(selectors.titleContainer);
+    $(selectors.container).each((idx, container) => {
+      const titleContainer = $(container).find(selectors.titleContainer);
       const [owner, title] = titleContainer
         .text()
         .replace(/\s+/g, "")
         .split("/");
-      const description = $(elem).find(selectors.description).text().trim();
+      const description = $(container)
+        .find(selectors.description)
+        .text()
+        .trim();
       const stars = Number(
-        $(elem)
+        $(container)
           .find(selectors.additionalInfo)
           .first()
           .text()
@@ -33,7 +36,7 @@ axios(url)
           .replace(",", "")
       );
       const forks = Number(
-        $(elem)
+        $(container)
           .find(selectors.additionalInfo)
           .last()
           .text()
