@@ -12,7 +12,12 @@ const selectors = {
   ownerImgSrc: "img.avatar.mb-1.avatar-user",
 };
 
-axios(url)
+axios(url, {
+  headers: {
+    "User-Agent":
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.157 Safari/537.36",
+  },
+})
   .then((response) => {
     const html = response.data;
     const $ = load(html);
@@ -38,6 +43,7 @@ axios(url)
         .first()
         .attr("src")
         ?.replace("s=40&", "");
+
       repos.push({
         id: idx,
         owner,
