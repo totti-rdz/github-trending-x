@@ -12,50 +12,43 @@ const selectors = {
   ownerImgSrc: "img.avatar.mb-1.avatar-user",
 };
 
-axios(url, {
+const response = await axios(url, {
   headers: {
     "User-Agent":
       "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.157 Safari/537.36",
   },
-})
-  .then((response) => {
-    const html = response.data;
-    const $ = load(html);
-    const repos = [];
+});
 
-    $(selectors.container).each((idx, container) => {
-      const titleContainer = $(container).find(selectors.titleContainer);
-      const [owner, title] = titleContainer
-        .text()
-        .replace(/\s+/g, "")
-        .split("/");
-      const description = $(container)
-        .find(selectors.description)
-        .text()
-        .trim();
-      const [stars, forks] = $(container)
-        .find(selectors.additionalInfo)
-        .map((_, elem) => Number($(elem).text().trim().replace(",", "")))
-        .toArray();
-      const link = titleContainer.attr("href");
-      const ownerImgSrc = $(container)
-        .find(selectors.ownerImgSrc)
-        .first()
-        .attr("src")
-        ?.replace("s=40&", "");
+const html = response.data;
 
-      repos.push({
-        id: idx,
-        owner,
-        title,
-        description,
-        stars,
-        forks,
-        link,
-        ownerImgSrc,
-      });
-    });
+const $ = load(html);
+const repos = [];
 
-    console.log("repos", repos[0]);
-  })
-  .catch(console.error);
+$(selectors.container).each((idx, container) => {
+  const titleContainer = $(container).find(selectors.titleContainer);
+  const [owner, title] = titleContainer.text().replace(/\s+/g, "").split("/");
+  const description = $(container).find(selectors.description).text().trim();
+  const [stars, forks] = $(container)
+    .find(selectors.additionalInfo)
+    .map((_, elem) => Number($(elem).text().trim().replace(",", "")))
+    .toArray();
+  const link = titleContainer.attr("href");
+  const ownerImgSrc = $(container)
+    .find(selectors.ownerImgSrc)
+    .first()
+    .attr("src")
+    ?.replace("s=40&", "");
+
+  repos.push({
+    id: idx,
+    owner,
+    title,
+    description,
+    stars,
+    forks,
+    link,
+    ownerImgSrc,
+  });
+});
+
+console.log("repos", repos[0]);
