@@ -1,11 +1,14 @@
 import express from "express";
+import Scraper from "./services/scraper.js";
 
 const port = 3000;
 
 const app = express();
 
-app.get("/", (_, res) => {
-  res.send("Hello world");
+app.get("/", async (_, res) => {
+  const scraper = new Scraper();
+  const result = await scraper.getRepos();
+  res.send(result);
 });
 
 app.listen(port, () => {
