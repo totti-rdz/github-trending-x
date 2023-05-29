@@ -14,7 +14,7 @@
   "scripts": {
     "dev:be": "npm run dev -w server",
     "dev:fe": "npm run dev -w client",
-    "dev": "npm run dev:be & npm run dev:fe",
+    "dev": "npm run dev:fe & npm run dev:be",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {}
