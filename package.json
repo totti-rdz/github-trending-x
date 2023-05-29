@@ -8,11 +8,13 @@
   "author": "Thorsten Herfurtner",
   "license": "ISC",
   "workspaces": [
+    "client",
     "server"
   ],
   "scripts": {
     "dev:be": "npm run dev -w server",
-    "dev": "npm run dev:be",
+    "dev:fe": "npm run dev -w client",
+    "dev": "npm run dev:be & npm run dev:fe",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {}
