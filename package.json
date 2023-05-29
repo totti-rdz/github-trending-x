@@ -12,9 +12,9 @@
     "server"
   ],
   "scripts": {
-    "dev:be": "npm run dev -w server",
-    "dev:fe": "npm run dev -w client",
-    "dev": "npm run dev:fe & npm run dev:be",
+    "dev:client": "npm run dev -w client",
+    "dev:server": "npm run dev -w server",
+    "dev": "npm run dev:client & npm run dev:server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {}
