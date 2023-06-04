@@ -11,7 +11,7 @@ const pathClientIndex = path.join(pathClient, "index.html");
 
 app.use(express.static(pathClient));
 
-app.get("/repos", async (_, res) => {
+app.get("/api/repos", async (_, res) => {
   const scraper = new Scraper();
   const result = await scraper.getRepos();
   res.send(result);
