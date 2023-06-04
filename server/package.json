@@ -2,9 +2,8 @@
   "name": "node-webscraper-github-server",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/index.js",
   "scripts": {
-    "dev": "tsc && node .",
+    "dev": "nodemon src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
