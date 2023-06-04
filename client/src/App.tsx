@@ -1,8 +1,24 @@
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+import Home from "./pages/Home.tsx";
+import Other from "./pages/Other.tsx";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home />,
+  },
+  {
+    path: "/other",
+    element: <Other />,
+  },
+]);
+
 function App() {
   return (
-    <main>
-      <h1>hello world!</h1>
-    </main>
+    <>
+      <RouterProvider router={router} />
+    </>
   );
 }
 
