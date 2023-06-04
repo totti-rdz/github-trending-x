@@ -17,7 +17,7 @@ export default class Scraper {
     const html = await scrapeUrl(url);
 
     const $ = load(html);
-    const repos = [];
+    const repos: any[] = [];
 
     $(selectors.container).each((idx, container) => {
       const titleContainer = $(container).find(selectors.titleContainer);
