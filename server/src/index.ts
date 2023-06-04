@@ -17,8 +17,6 @@ app.get("/api/repos", async (_, res) => {
   res.send(result);
 });
 
-console.log("HELLO AGAIN FROM EXPRESS");
-
 app.get("*", (_, res) => {
   res.sendFile(pathClientIndex);
 });
