@@ -1,5 +1,5 @@
 import { load } from "cheerio";
-import scrapeUrl from "../utils/scrapeUrl.js";
+import scrapeUrl from "../utils/scrapeUrl";
 
 const url = "https://github.com/trending/javascript?since=daily";
 

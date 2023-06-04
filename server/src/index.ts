@@ -1,5 +1,5 @@
 import express from "express";
-import Scraper from "./services/scraper.js";
+import Scraper from "./services/scraper";
 import path from "path";
 
 const port = 3000;
