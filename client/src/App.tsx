@@ -12,6 +12,10 @@ const router = createBrowserRouter([
     path: "/other",
     element: <Other />,
   },
+  {
+    path: "/other/:test",
+    element: <Other />,
+  },
 ]);
 
 function App() {
