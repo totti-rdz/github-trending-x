@@ -1,5 +1,5 @@
 import { load } from "cheerio";
-import scrapeUrl from "../utils/scrapeUrl.js";
+import scrapeUrl from "../utils/scrapeUrl";
 
 const url = "https://github.com/trending/javascript?since=daily";
 
@@ -17,7 +17,7 @@ export default class Scraper {
     const html = await scrapeUrl(url);
 
     const $ = load(html);
-    const repos = [];
+    const repos: any[] = [];
 
     $(selectors.container).each((idx, container) => {
       const titleContainer = $(container).find(selectors.titleContainer);

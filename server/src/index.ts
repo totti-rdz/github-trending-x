@@ -1,12 +1,12 @@
 import express from "express";
-import Scraper from "./services/scraper.js";
+import Scraper from "./services/scraper";
 import path from "path";
 
 const port = 3000;
 const app = express();
 
-const __dirname = path.resolve();
-const pathClient = path.join(__dirname, "..", "client", "dist");
+// const __dirname = path.resolve();
+const pathClient = path.join(__dirname, "..", "dist", "client");
 const pathClientIndex = path.join(pathClient, "index.html");
 
 app.use(express.static(pathClient));
