@@ -14,6 +14,9 @@
     "dev:client": "npm run dev -w client",
     "dev:server": "npm run dev -w server",
     "dev": "npm run dev:client & npm run dev:server",
+    "build:client": "npm run build -w client",
+    "build:server": "npm run build -w server",
+    "build": "npm run build:client && npm run build:server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {}
