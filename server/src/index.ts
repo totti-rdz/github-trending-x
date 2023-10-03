@@ -1,6 +1,6 @@
 import express from "express";
-import Scraper from "./services/scraper";
 import path from "path";
+import { routes } from "./routes";
 
 const port = 3000;
 const app = express();
@@ -11,11 +11,8 @@ const pathClientIndex = path.join(pathClient, "index.html");
 
 app.use(express.static(pathClient));
 
-app.get("/api/repos", async (_, res) => {
-  const scraper = new Scraper();
-  const result = await scraper.getRepos();
-  res.send(result);
-});
+// Set endpoints for express router routes
+app.use("/api", routes());
 
 app.get("*", (_, res) => {
   res.sendFile(pathClientIndex);
