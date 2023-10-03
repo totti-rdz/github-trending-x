@@ -8,7 +8,6 @@ dotenv.config();
 const port = process.env.PORT || 3000;
 const app = express();
 
-// const __dirname = path.resolve();
 const pathClient = path.join(__dirname, "..", "dist", "client");
 const pathClientIndex = path.join(pathClient, "index.html");
 
