@@ -17,7 +17,7 @@
     "build:client": "npm run build -w client",
     "build:server": "npm run build -w server",
     "build": "npm run build:client && npm run build:server",
-    "serve": "node ./server/dist/index.js",
+    "start": "node ./server/dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {}
