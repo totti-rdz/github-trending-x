@@ -1,5 +1,10 @@
 # node-webscraper-github
 
+- [Description](#description)
+- [Features](#features)
+- [Setup development](#setup-development)
+- [Build production](#build-production)
+
 ## Description
 
 This project started as a small project to learn mainly web scraping. Out of eagerness to explore and learn more, this project evolved into a monorepo containing an express backend that serves a single-page React application (powered by Vite), all written in TypeScript. While creating the monorepo, a primary focus was placed on improving the Developer Experience (DX). Resulting in needing to use only one localhost port for both the backend and the frontend in development. Plus, there's hot module reloading for the frontend, and the backend automatically restarts when changes are made, eliminating the need for manual reloading.
