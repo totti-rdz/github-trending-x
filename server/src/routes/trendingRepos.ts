@@ -1,12 +1,8 @@
 import express from "express";
-import Scraper from "../services/scraper";
+import { RepoController } from "../controllers/trendingRepos";
 
 const router = express.Router();
 
-router.get("/repos", async (_, res) => {
-  const scraper = new Scraper();
-  const result = await scraper.getRepos();
-  res.send(result);
-});
+router.get("/repos", RepoController.getRepos);
 
 export default router;
