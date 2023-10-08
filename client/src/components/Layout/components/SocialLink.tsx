@@ -3,7 +3,6 @@ import GithubIcon from '../../Icons/social/GithubIcon';
 import LinkedinIcon from '../../Icons/social/LinkedinIcon';
 import { StringHelper } from '../../utils/StringHelper';
 import { classNames } from '../../utils/classNames';
-import { groupHover, hover } from '../../utils/prefixClassNames';
 
 const iconMap = {
   github: GithubIcon,
@@ -22,7 +21,7 @@ const SocialLink = ({ href, icon }: Props) => {
       href={href}
       className={classNames(
         'group block rounded-lg p-1',
-        hover('scale-105 bg-gray-700 text-white')
+        'hover:scale-105 hover:bg-gray-700 hover:text-white'
       )}
       target="_blank"
       title={title}
@@ -30,7 +29,7 @@ const SocialLink = ({ href, icon }: Props) => {
       <Icon
         className={classNames(
           'h-5 w-5 transition-transform',
-          groupHover('rotate-12 scale-110')
+          'group-hover:rotate-12 group-hover:scale-110'
         )}
       />
     </a>
