@@ -1,6 +1,6 @@
-import express from "express";
+import express from 'express';
 
-import trendingReposRouter from "./trendingRepos";
+import trendingReposRouter from './trendingRepos';
 
 const router = express.Router();
 

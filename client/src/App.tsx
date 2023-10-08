@@ -1,22 +1,22 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import "./styles/globals.css";
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import './styles/globals.css';
 
-import Home from "./pages/Home.tsx";
-import Other from "./pages/Other.tsx";
-import ErrorPage from "./pages/Error.tsx";
+import Home from './pages/Home.tsx';
+import Other from './pages/Other.tsx';
+import ErrorPage from './pages/Error.tsx';
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <Home />,
     errorElement: <ErrorPage />,
   },
   {
-    path: "/other",
+    path: '/other',
     element: <Other />,
   },
   {
-    path: "/other/:test",
+    path: '/other/:test',
     element: <Other />,
   },
 ]);

@@ -1,8 +1,8 @@
-import express from "express";
-import path from "path";
-import dotenv from "dotenv";
-import { routes } from "./routes";
-import { appendQueryParams } from "./utils/appendQueryParams";
+import express from 'express';
+import path from 'path';
+import dotenv from 'dotenv';
+import { routes } from './routes';
+import { appendQueryParams } from './utils/appendQueryParams';
 
 dotenv.config();
 const environment = process.env.NODE_ENV;
@@ -11,13 +11,13 @@ const port = process.env.PORT || 3000;
 const app = express();
 
 // Set endpoints for express router routes
-app.use("/api", routes());
+app.use('/api', routes());
 
 // Redirecting routes to Vite development server in development
-app.get("*", (req, res, next) => {
-  if (environment === "development") {
+app.get('*', (req, res, next) => {
+  if (environment === 'development') {
     res.redirect(
-      "http://localhost:5173" + req.path + appendQueryParams(req.query)
+      'http://localhost:5173' + req.path + appendQueryParams(req.query)
     );
     return;
   }
@@ -25,19 +25,19 @@ app.get("*", (req, res, next) => {
 });
 
 // Serving react frontend pages
-const pathClient = path.join(__dirname, "..", "dist", "client");
-const pathClientIndex = path.join(pathClient, "index.html");
+const pathClient = path.join(__dirname, '..', 'dist', 'client');
+const pathClientIndex = path.join(pathClient, 'index.html');
 app.use(express.static(pathClient)); // serving css and js files along html files
-app.get("*", (_, res) => {
+app.get('*', (_, res) => {
   res.sendFile(pathClientIndex);
 });
 
 app.listen(port, () => {
-  if (environment !== "production") {
+  if (environment !== 'production') {
     console.info(
-      "\x1b[33m%s\x1b[0m", // change font color to yellow
+      '\x1b[33m%s\x1b[0m', // change font color to yellow
       `NODE_ENV is set to "${environment}". It is recommended to set it to "production" when running in production mode.`,
-      "\x1b[0m" // reset font color
+      '\x1b[0m' // reset font color
     );
     return;
   }
