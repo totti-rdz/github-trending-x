@@ -6,10 +6,10 @@ type Props = {
 
 const Layout = ({ children }: Props) => {
   return (
-    <main className="flex min-h-screen flex-col justify-between">
-      <div className="h-full w-full flex-1">{children}</div>
-      <Footer />
-    </main>
+      <div className="flex min-h-screen flex-col justify-between">
+        <main className="h-full w-full flex-1">{children}</main>
+        <Footer />
+      </div>
   );
 };
 
