@@ -1,8 +1,8 @@
 import EmailIcon from '../../Icons/social/EmailIcon';
 import GithubIcon from '../../Icons/social/GithubIcon';
 import LinkedinIcon from '../../Icons/social/LinkedinIcon';
-import { StringHelper } from '../../utils/StringHelper';
-import { classNames } from '../../utils/classNames';
+import { StringHelper } from '../../../utils/StringHelper';
+import { classNames } from '../../../utils/classNames';
 
 const iconMap = {
   github: GithubIcon,
