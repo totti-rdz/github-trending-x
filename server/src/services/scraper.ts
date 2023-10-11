@@ -1,46 +1,51 @@
-import { load } from 'cheerio';
+import { AnyNode, Cheerio, CheerioAPI, load } from 'cheerio';
 import scrapeUrl from '../utils/scrapeUrl';
 
-const url = 'https://github.com/trending/javascript?since=daily';
+const url =
+  'https://github.com/trending/javascript?since=daily&spoken_language_code=en';
 
 const selectors = {
   container: '.Box-row',
   titleContainer: 'h2.h3 a',
   description: 'p',
-  additionalInfo:
+  amountStarsAndForks:
     'div.f6.color-fg-muted.mt-2 a.Link--muted.d-inline-block.mr-3',
   ownerImgSrc: 'img.avatar.mb-1.avatar-user',
 };
 
 export default class Scraper {
-  async getRepos() {
-    const html = await scrapeUrl(url);
+  private static repos: any[] = [];
+  private static $: CheerioAPI | null = null;
 
-    const $ = load(html);
-    const repos: any[] = [];
+  private static async initCheerio() {
+    this.$ = await this.getHtml();
+  }
 
-    $(selectors.container).each((idx, container) => {
-      const titleContainer = $(container).find(selectors.titleContainer);
-      const [owner, title] = titleContainer
-        .text()
-        .replace(/\s+/g, '')
-        .split('/');
-      const description = $(container)
-        .find(selectors.description)
-        .text()
-        .trim();
-      const [stars, forks] = $(container)
-        .find(selectors.additionalInfo)
-        .map((_, elem) => Number($(elem).text().trim().replace(',', '')))
-        .toArray();
-      const link = titleContainer.attr('href');
-      const ownerImgSrc = $(container)
-        .find(selectors.ownerImgSrc)
-        .first()
-        .attr('src')
-        ?.replace('s=40&', '');
+  private static validateCheerioInstance(methodName?: string) {
+    if (!this.$) {
+      if (!!methodName) {
+        console.error(
+          '\x1b[31m%s\x1b[0m', // change font color to red
+          `Error was thrown in: ${methodName}`,
+          '\x1b[0m' // reset font color)
+        );
+      }
+      throw new Error('Cheerio not yet initialized');
+    }
+  }
 
-      repos.push({
+  public static async getRepos() {
+    await this.initCheerio();
+    this.validateCheerioInstance('getRepos');
+
+    const container = await this.getRepositoriesContainer();
+
+    container.each((idx, element) => {
+      const container = this.$!(element);
+      const { owner, title, description, stars, forks, link, ownerImgSrc } =
+        this.getData(container);
+
+      this.repos.push({
         id: idx,
         owner,
         title,
@@ -52,7 +57,64 @@ export default class Scraper {
       });
     });
 
-    console.log('repos', repos[0]);
-    return repos;
+    console.log('repos', this.repos[0]);
+    return this.repos;
+  }
+
+  private static async getHtml() {
+    const html = await scrapeUrl(url);
+    return load(html);
+  }
+
+  private static async getRepositoriesContainer() {
+    this.validateCheerioInstance('getRepositoriesContainer');
+    return this.$!(selectors.container);
+  }
+
+  private static getData = (container: Cheerio<AnyNode>) => {
+    const titleContainer = container.find(selectors.titleContainer);
+
+    const [owner, title] = this.getTitleAndOwner(titleContainer);
+    const link = this.getLink(titleContainer);
+
+    const description = this.getDescription(container);
+    const [stars, forks] = this.getStarsAndForks(container);
+    const ownerImgSrc = this.getOwnerImgSrc(container);
+    return {
+      owner,
+      title,
+      description,
+      stars,
+      forks,
+      link,
+      ownerImgSrc,
+    };
+  };
+
+  private static getTitleAndOwner(titleContainer: Cheerio<AnyNode>) {
+    return titleContainer.text().replace(/\s+/g, '').split('/');
+  }
+
+  private static getDescription(container: Cheerio<AnyNode>) {
+    return container.find(selectors.description).text().trim();
+  }
+
+  private static getStarsAndForks(container: Cheerio<AnyNode>) {
+    return container
+      .find(selectors.amountStarsAndForks)
+      .map((_, elem) => Number(this.$!(elem).text().trim().replace(',', '')))
+      .toArray();
+  }
+
+  private static getLink(titleContainer: Cheerio<AnyNode>) {
+    return titleContainer.attr('href');
+  }
+
+  private static getOwnerImgSrc(container: Cheerio<AnyNode>) {
+    return container
+      .find(selectors.ownerImgSrc)
+      .first()
+      .attr('src')
+      ?.replace('s=40&', '');
   }
 }

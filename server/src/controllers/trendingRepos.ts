@@ -3,8 +3,7 @@ import Scraper from '../services/scraper';
 
 export class RepoController {
   public static async getRepos(_: Request, res: Response) {
-    const scraper = new Scraper();
-    const result = await scraper.getRepos();
+    const result = await Scraper.getRepos();
     res.send(result);
   }
 }
