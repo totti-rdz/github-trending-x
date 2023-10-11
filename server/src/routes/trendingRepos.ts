@@ -3,6 +3,6 @@ import { RepoController } from '../controllers/trendingRepos';
 
 const router = express.Router();
 
-router.get('/repos', RepoController.getRepos);
+router.get('/trending-repositories', RepoController.getRepos);
 
 export default router;
