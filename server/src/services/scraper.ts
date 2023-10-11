@@ -1,5 +1,6 @@
 import { AnyNode, Cheerio, CheerioAPI, load } from 'cheerio';
 import scrapeUrl from '../utils/scrapeUrl';
+import { logger } from './logger';
 
 const url =
   'https://github.com/trending/javascript?since=daily&spoken_language_code=en';
@@ -24,11 +25,7 @@ export default class Scraper {
   private static validateCheerioInstance(methodName?: string) {
     if (!this.$) {
       if (!!methodName) {
-        console.error(
-          '\x1b[31m%s\x1b[0m', // change font color to red
-          `Error was thrown in: ${methodName}`,
-          '\x1b[0m' // reset font color)
-        );
+        logger.error(`Error was thrown in: ${methodName}`);
       }
       throw new Error('Cheerio not yet initialized');
     }

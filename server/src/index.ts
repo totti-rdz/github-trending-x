@@ -3,6 +3,7 @@ import path from 'path';
 import dotenv from 'dotenv';
 import { routes } from './routes';
 import { appendQueryParams } from './utils/appendQueryParams';
+import { logger } from './services/logger';
 
 dotenv.config();
 const environment = process.env.NODE_ENV;
@@ -34,10 +35,8 @@ app.get('*', (_, res) => {
 
 app.listen(port, () => {
   if (environment !== 'production') {
-    console.info(
-      '\x1b[33m%s\x1b[0m', // change font color to yellow
-      `NODE_ENV is set to "${environment}". It is recommended to set it to "production" when running in production mode.`,
-      '\x1b[0m' // reset font color
+    logger.info(
+      `NODE_ENV is set to "${environment}". It is recommended to set it to "production" when running in production mode.`
     );
     return;
   }
