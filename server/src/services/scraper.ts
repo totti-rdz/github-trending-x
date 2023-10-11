@@ -15,7 +15,6 @@ const selectors = {
 };
 
 export default class Scraper {
-  private static repos: any[] = [];
   private static $: CheerioAPI | null = null;
 
   private static async initCheerio() {
@@ -32,6 +31,7 @@ export default class Scraper {
   }
 
   public static async getRepos() {
+    const repos: any[] = [];
     await this.initCheerio();
     this.validateCheerioInstance('getRepos');
 
@@ -42,7 +42,7 @@ export default class Scraper {
       const { owner, title, description, stars, forks, link, ownerImgSrc } =
         this.getData(container);
 
-      this.repos.push({
+      repos.push({
         id: idx,
         owner,
         title,
@@ -54,8 +54,8 @@ export default class Scraper {
       });
     });
 
-    console.log('repos', this.repos[0]);
-    return this.repos;
+    console.log('repos', repos[0]);
+    return repos;
   }
 
   private static async getHtml() {
