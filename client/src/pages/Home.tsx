@@ -12,7 +12,7 @@ type Repo = {
   title: string;
 };
 
-function Home() {
+const Home = () => {
   const [data, setData] = useState<Repo[] | undefined>(undefined);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {

@@ -1,7 +1,7 @@
 import { Link, useParams } from 'react-router-dom';
 import Layout from '../components/Layout';
 
-function Other() {
+const Other = () => {
   const params = useParams();
   return (
     <Layout>
