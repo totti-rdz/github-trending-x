@@ -42,7 +42,7 @@ const Home = () => {
       ) : (
         <>
           {!!data ? (
-            <div className="no-scrollbar grid h-[calc(100%-60px)] w-full justify-center gap-5 overflow-auto px-10">
+            <div className="no-scrollbar grid flex-1 w-full justify-center gap-5 overflow-auto px-10">
               {data.map((repo) => (
                 <div
                   className="max-w-prose rounded-xl border border-purple-600 bg-gray-900"
