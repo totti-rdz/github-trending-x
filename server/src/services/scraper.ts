@@ -15,6 +15,17 @@ const selectors = {
   languagesList: '#languages-menuitems a.select-menu-item',
 };
 
+export type Language = { label: string; value: string | undefined };
+export type Repo = {
+  id: number;
+  owner: string;
+  title: string;
+  description: string;
+  stars: number;
+  forks: number;
+  link: string | undefined;
+  ownerImgSrc: string | undefined;
+};
 
 export default class Scraper {
   private static $: CheerioAPI | null = null;
@@ -27,7 +38,7 @@ export default class Scraper {
   }
 
   public static async getLanguages() {
-    const languages: any[] = [];
+    const languages: Language[] = [];
     const pattern = /\/([^/?]+)(?:\?|$)/;
 
     await this.initCheerio();
@@ -47,7 +58,7 @@ export default class Scraper {
   }
 
   public static async getRepos() {
-    const repos: any[] = [];
+    const repos: Repo[] = [];
     await this.initCheerio();
 
     const container = await this.getRepositoriesContainer();
