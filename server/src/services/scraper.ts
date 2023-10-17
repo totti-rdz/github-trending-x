@@ -1,6 +1,7 @@
 import { AnyNode, Cheerio, CheerioAPI, load } from 'cheerio';
 import scrapeUrl from '../utils/scrapeUrl';
 import { logger } from './logger';
+import { deduplicateArrayOfObjects } from '../utils/deduplicateArrayOfObjects';
 
 const url =
   'https://github.com/trending/javascript?since=daily&spoken_language_code=en';
@@ -33,7 +34,7 @@ export default class Scraper {
   private static async initCheerio() {
     if (!this.$) {
       this.$ = await this.getHtml();
-      logger.info('cheerio initialized');
+      logger.info('Cheerio initialized');
     }
   }
 
@@ -54,7 +55,13 @@ export default class Scraper {
       const match = value.match(pattern);
       languages.push({ label, value: match?.[1] });
     });
-    return languages;
+
+    const uniqueLanguages = deduplicateArrayOfObjects<Language>(
+      languages,
+      'value'
+    );
+
+    return uniqueLanguages;
   }
 
   public static async getRepos() {
