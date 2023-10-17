@@ -12,28 +12,43 @@ const selectors = {
   amountStarsAndForks:
     'div.f6.color-fg-muted.mt-2 a.Link--muted.d-inline-block.mr-3',
   ownerImgSrc: 'img.avatar.mb-1.avatar-user',
+  languagesList: '#languages-menuitems a.select-menu-item',
 };
+
 
 export default class Scraper {
   private static $: CheerioAPI | null = null;
 
   private static async initCheerio() {
-    this.$ = await this.getHtml();
+    if (!this.$) {
+      this.$ = await this.getHtml();
+      logger.info('cheerio initialized');
+    }
   }
 
-  private static validateCheerioInstance(methodName?: string) {
-    if (!this.$) {
-      if (!!methodName) {
-        logger.error(`Error was thrown in: ${methodName}`);
-      }
-      throw new Error('Cheerio not yet initialized');
-    }
+  public static async getLanguages() {
+    const languages: any[] = [];
+    const pattern = /\/([^/?]+)(?:\?|$)/;
+
+    await this.initCheerio();
+
+    const languagesList = this.$!(selectors.languagesList);
+
+    languagesList.each((_, element) => {
+      const elem = this.$!(element);
+
+      const label = elem.text().trim();
+      const value = elem.attr('href');
+      if (!value) return;
+      const match = value.match(pattern);
+      languages.push({ label, value: match?.[1] });
+    });
+    return languages;
   }
 
   public static async getRepos() {
     const repos: any[] = [];
     await this.initCheerio();
-    this.validateCheerioInstance('getRepos');
 
     const container = await this.getRepositoriesContainer();
 
@@ -64,7 +79,7 @@ export default class Scraper {
   }
 
   private static async getRepositoriesContainer() {
-    this.validateCheerioInstance('getRepositoriesContainer');
+    await this.initCheerio();
     return this.$!(selectors.container);
   }
 
