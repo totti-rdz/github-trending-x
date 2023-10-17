@@ -6,4 +6,8 @@ export class RepoController {
     const result = await Scraper.getRepos();
     res.send(result);
   }
+  public static async getLanguages(_: Request, res: Response) {
+    const result = await Scraper.getLanguages();
+    res.send(result);
+  }
 }
