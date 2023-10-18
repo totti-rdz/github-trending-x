@@ -18,7 +18,7 @@ const selectors = {
   languagesList: '#languages-menuitems a.select-menu-item',
 };
 
-export type Language = { label: string; value: string | undefined };
+export type Language = { label: string; value: string };
 export type Repo = {
   id: number;
   owner: string;
@@ -62,9 +62,9 @@ export default class Scraper {
 
       const label = elem.text().trim();
       const value = elem.attr('href');
-      if (!value) return;
-      const match = value.match(pattern);
-      languages.push({ label, value: match?.[1] });
+      const match = value?.match(pattern);
+      if (!match) return;
+      languages.push({ label, value: match[1] });
     });
 
     const uniqueLanguages = deduplicateArrayOfObjects<Language>(
