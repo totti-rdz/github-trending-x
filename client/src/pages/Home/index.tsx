@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Layout from '../../components/Layout';
 import LanguageSelect from './components/LanguageSelect';
+import Loading from '../../components/Loading';
 
 type Repo = {
   description: string;
@@ -46,7 +47,9 @@ const Home = () => {
         setCurrentLanguage={setLanguage}
       />
       {isLoading ? (
-        <div>LOADING</div>
+        <div className="grid flex-1 place-content-center">
+          <Loading size="lg" />
+        </div>
       ) : (
         <>
           {!!data ? (

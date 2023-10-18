@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import Select from '../../../components/Select';
+import Loading from '../../../components/Loading';
 
 type Language = { label: string; value: string };
 
@@ -35,16 +36,15 @@ const LanguageSelect = ({ currentLanguage, setCurrentLanguage }: Props) => {
     fetchLanguageOptions();
   }, []);
   return (
-    <>
+    <div className="my-5 grid h-14 place-content-center">
       {isLoading ? (
-        <div>Loading</div>
+        <Loading />
       ) : (
         <>
           {!!languageOptions ? (
             <Select
               name="language"
               label="Choose a programming language:"
-              className="my-5 grid place-content-center"
               onChange={handleLanguageChange}
               options={languageOptions}
               value={currentLanguage}
@@ -54,7 +54,7 @@ const LanguageSelect = ({ currentLanguage, setCurrentLanguage }: Props) => {
           )}
         </>
       )}
-    </>
+    </div>
   );
 };
 
