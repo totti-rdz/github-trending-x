@@ -21,7 +21,7 @@ const Select = ({
   value,
 }: Props) => {
   return (
-    <div className={className}>
+    <>
       {!!label && <label htmlFor={name + '-select'}>{label}</label>}
       <select
         name={name}
@@ -38,7 +38,7 @@ const Select = ({
           );
         })}
       </select>
-    </div>
+    </>
   );
 };
 
