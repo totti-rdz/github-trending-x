@@ -12,24 +12,51 @@ type Repo = {
   title: string;
 };
 
+type Language = { label: string; value: string | undefined };
+
 const Home = () => {
   const [data, setData] = useState<Repo[] | undefined>(undefined);
+  const [languageOptions, setLanguageOptions] = useState<
+    Language[] | undefined
+  >(undefined);
+  const [language, setLanguage] = useState('javascript');
   const [isLoading, setIsLoading] = useState(true);
+
+  const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) =>
+    setLanguage(e.target.value);
+
+  useEffect(() => {
+    const fetchLanguageOptions = async () => {
+      try {
+        setIsLoading(true);
+        const response = await fetch('/api/programming-languages');
+        const languageOptions = await response.json();
+        setLanguageOptions(languageOptions);
+      } catch (error) {
+        console.error('Error fetching languages:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchLanguageOptions();
+  }, []);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('/api/trending-repositories');
+        setIsLoading(true);
+        const response = await fetch('/api/trending-repositories/' + language);
         const data = await response.json();
         setData(data);
-        setIsLoading(false);
-        console.log('data', data);
       } catch (error) {
         console.error('Error fetching data:', error);
+      } finally {
         setIsLoading(false);
       }
     };
     fetchData();
-  }, []);
+  }, [language]);
+
   return (
     <Layout>
       <div className="text-center">
@@ -41,8 +68,30 @@ const Home = () => {
         <div>LOADING</div>
       ) : (
         <>
+          {!!languageOptions && (
+            <div className="my-5 grid place-content-center">
+              <label htmlFor="language-select">
+                Choose a programming language:
+              </label>
+              <select
+                name="language"
+                id="language-select"
+                className="rounded-lg bg-purple-600 px-2 py-1"
+                value={language}
+                onChange={handleLanguageChange}
+              >
+                {languageOptions.map(({ label, value }) => {
+                  return (
+                    <option value={value} key={value}>
+                      {label}
+                    </option>
+                  );
+                })}
+              </select>
+            </div>
+          )}
           {!!data ? (
-            <div className="no-scrollbar grid flex-1 w-full justify-center gap-5 overflow-auto px-10">
+            <div className="no-scrollbar grid flex-1 justify-center gap-5 overflow-auto px-10">
               {data.map((repo) => (
                 <div
                   className="max-w-prose rounded-xl border border-purple-600 bg-gray-900"
@@ -82,6 +131,6 @@ const Home = () => {
       )}
     </Layout>
   );
-}
+};
 
 export default Home;
