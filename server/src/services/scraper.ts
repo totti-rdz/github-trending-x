@@ -3,8 +3,10 @@ import scrapeUrl from '../utils/scrapeUrl';
 import { logger } from './logger';
 import { deduplicateArrayOfObjects } from '../utils/deduplicateArrayOfObjects';
 
-const url =
-  'https://github.com/trending/javascript?since=daily&spoken_language_code=en';
+const baseUrl = 'https://github.com/trending/';
+
+const languageDefault = 'javascript';
+const queryParamDefault = '?since=daily'; //&spoken_language_code=en';
 
 const selectors = {
   container: '.Box-row',
@@ -29,25 +31,34 @@ export type Repo = {
 };
 
 export default class Scraper {
-  private static $: CheerioAPI | null = null;
+  private $: CheerioAPI | null = null;
+  private language: string;
 
-  private static async initCheerio() {
-    if (!this.$) {
-      this.$ = await this.getHtml();
-      logger.info('Cheerio initialized');
-    }
+  constructor(language = languageDefault) {
+    this.language = encodeURIComponent(language);
   }
 
-  public static async getLanguages() {
+  public async init() {
+    await this.initCheerio(this.language);
+    return this;
+  }
+
+  private async initCheerio(language: string) {
+    this.$ = await this.getHtml(language);
+    logger.info('Cheerio initialized');
+  }
+
+  public async getLanguages() {
     const languages: Language[] = [];
     const pattern = /\/([^/?]+)(?:\?|$)/;
 
-    await this.initCheerio();
+    // get html without any language - the value of the language specified will be wrong
+    const $ = await this.getHtml('');
 
-    const languagesList = this.$!(selectors.languagesList);
+    const languagesList = $(selectors.languagesList);
 
     languagesList.each((_, element) => {
-      const elem = this.$!(element);
+      const elem = $(element);
 
       const label = elem.text().trim();
       const value = elem.attr('href');
@@ -64,10 +75,14 @@ export default class Scraper {
     return uniqueLanguages;
   }
 
-  public static async getRepos() {
+  public async getRepos() {
     const repos: Repo[] = [];
-    await this.initCheerio();
+    if (!this.$)
+      throw new Error(
+        'Scraper was not initialized properly. Please call async function init(), when constructing a new Scraper instance'
+      );
 
+    await this.getLanguages();
     const container = await this.getRepositoriesContainer();
 
     container.each((idx, element) => {
@@ -91,17 +106,21 @@ export default class Scraper {
     return repos;
   }
 
-  private static async getHtml() {
+  private async getHtml(language: string) {
+    const url = baseUrl + language + queryParamDefault;
     const html = await scrapeUrl(url);
     return load(html);
   }
 
-  private static async getRepositoriesContainer() {
-    await this.initCheerio();
-    return this.$!(selectors.container);
+  private async getRepositoriesContainer() {
+    if (!this.$)
+      throw new Error(
+        'Scraper was not initialized properly. Please call async function init(), when constructing a new Scraper instance'
+      );
+    return this.$(selectors.container);
   }
 
-  private static getData = (container: Cheerio<AnyNode>) => {
+  private getData = (container: Cheerio<AnyNode>) => {
     const titleContainer = container.find(selectors.titleContainer);
 
     const [owner, title] = this.getTitleAndOwner(titleContainer);
@@ -121,26 +140,26 @@ export default class Scraper {
     };
   };
 
-  private static getTitleAndOwner(titleContainer: Cheerio<AnyNode>) {
+  private getTitleAndOwner(titleContainer: Cheerio<AnyNode>) {
     return titleContainer.text().replace(/\s+/g, '').split('/');
   }
 
-  private static getDescription(container: Cheerio<AnyNode>) {
+  private getDescription(container: Cheerio<AnyNode>) {
     return container.find(selectors.description).text().trim();
   }
 
-  private static getStarsAndForks(container: Cheerio<AnyNode>) {
+  private getStarsAndForks(container: Cheerio<AnyNode>) {
     return container
       .find(selectors.amountStarsAndForks)
       .map((_, elem) => Number(this.$!(elem).text().trim().replace(',', '')))
       .toArray();
   }
 
-  private static getLink(titleContainer: Cheerio<AnyNode>) {
+  private getLink(titleContainer: Cheerio<AnyNode>) {
     return titleContainer.attr('href');
   }
 
-  private static getOwnerImgSrc(container: Cheerio<AnyNode>) {
+  private getOwnerImgSrc(container: Cheerio<AnyNode>) {
     return container
       .find(selectors.ownerImgSrc)
       .first()
