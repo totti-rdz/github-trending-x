@@ -22,8 +22,8 @@ const Home = () => {
   const [language, setLanguage] = useState('javascript');
   const [isLoading, setIsLoading] = useState(true);
 
-  const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) =>
-    setLanguage(e.target.value);
+  const handleLanguageChange = (event: React.ChangeEvent<HTMLSelectElement>) =>
+    setLanguage(event.target.value);
 
   useEffect(() => {
     const fetchLanguageOptions = async () => {
