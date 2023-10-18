@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import Layout from '../../components/Layout';
+import LanguageSelect from './components/LanguageSelect';
 
 type Repo = {
   description: string;
@@ -12,34 +13,10 @@ type Repo = {
   title: string;
 };
 
-type Language = { label: string; value: string | undefined };
-
 const Home = () => {
   const [data, setData] = useState<Repo[] | undefined>(undefined);
-  const [languageOptions, setLanguageOptions] = useState<
-    Language[] | undefined
-  >(undefined);
   const [language, setLanguage] = useState('javascript');
   const [isLoading, setIsLoading] = useState(true);
-
-  const handleLanguageChange = (event: React.ChangeEvent<HTMLSelectElement>) =>
-    setLanguage(event.target.value);
-
-  useEffect(() => {
-    const fetchLanguageOptions = async () => {
-      try {
-        setIsLoading(true);
-        const response = await fetch('/api/programming-languages');
-        const languageOptions = await response.json();
-        setLanguageOptions(languageOptions);
-      } catch (error) {
-        console.error('Error fetching languages:', error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    fetchLanguageOptions();
-  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -64,32 +41,14 @@ const Home = () => {
           Trending GitHub Repositories
         </h1>
       </div>
+      <LanguageSelect
+        currentLanguage={language}
+        setCurrentLanguage={setLanguage}
+      />
       {isLoading ? (
         <div>LOADING</div>
       ) : (
         <>
-          {!!languageOptions && (
-            <div className="my-5 grid place-content-center">
-              <label htmlFor="language-select">
-                Choose a programming language:
-              </label>
-              <select
-                name="language"
-                id="language-select"
-                className="rounded-lg bg-purple-600 px-2 py-1"
-                value={language}
-                onChange={handleLanguageChange}
-              >
-                {languageOptions.map(({ label, value }) => {
-                  return (
-                    <option value={value} key={value}>
-                      {label}
-                    </option>
-                  );
-                })}
-              </select>
-            </div>
-          )}
           {!!data ? (
             <div className="no-scrollbar grid flex-1 justify-center gap-5 overflow-auto px-10">
               {data.map((repo) => (
