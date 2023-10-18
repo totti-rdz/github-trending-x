@@ -1,5 +1,5 @@
 import { Link, useParams } from 'react-router-dom';
-import Layout from '../components/Layout';
+import Layout from '../../components/Layout';
 
 const Other = () => {
   const params = useParams();
@@ -10,6 +10,6 @@ const Other = () => {
       {params && params.test && <div>Test: {params.test}</div>}
     </Layout>
   );
-}
+};
 
 export default Other;

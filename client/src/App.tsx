@@ -1,8 +1,8 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-import Home from './pages/Home.tsx';
-import Other from './pages/Other.tsx';
-import ErrorPage from './pages/Error.tsx';
+import Home from './pages/Home';
+import Other from './pages/Other';
+import ErrorPage from './pages/Error';
 
 const router = createBrowserRouter([
   {
