@@ -13,7 +13,6 @@ type Props = {
 };
 
 const Select = ({
-  className = '',
   label,
   name,
   onChange,
