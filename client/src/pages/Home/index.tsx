@@ -1,19 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Layout from '../../components/Layout';
 import LanguageSelect from './components/LanguageSelect';
 import Loading from '../../components/Loading';
 import { useRepositories } from '../../hooks/useRepositories';
-
-type Repo = {
-  description: string;
-  forks: number;
-  id: number;
-  link: string;
-  owner: string;
-  ownerImgSrc: string;
-  stars: number;
-  title: string;
-};
 
 const Home = () => {
   const [language, setLanguage] = useState('javascript');
