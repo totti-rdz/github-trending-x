@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import Select from '../../../components/Select';
 import Loading from '../../../components/Loading';
+import { useLanguageOptions } from '../../../hooks/useLanguageOptions';
 
 type Language = { label: string; value: string };
 
@@ -10,31 +11,11 @@ type Props = {
 };
 
 const LanguageSelect = ({ currentLanguage, setCurrentLanguage }: Props) => {
-  const [languageOptions, setLanguageOptions] = useState<
-    Language[] | undefined
-  >(undefined);
-  const [isLoading, setIsLoading] = useState(true);
+  const { languageOptions, isLoading } = useLanguageOptions();
 
   const handleLanguageChange = (event: React.ChangeEvent<HTMLSelectElement>) =>
     setCurrentLanguage(event.target.value);
 
-  useEffect(() => {
-    const fetchLanguageOptions = async () => {
-      try {
-        const response = await fetch('/api/programming-languages');
-        const languageOptions = (await response.json()) as Language[];
-        const languageOptionsFiltered = languageOptions.filter(
-          (lang) => lang.value !== undefined
-        );
-        setLanguageOptions(languageOptionsFiltered);
-      } catch (error) {
-        console.error('Error fetching languages:', error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    fetchLanguageOptions();
-  }, []);
   return (
     <div className="my-5 grid h-14 place-content-center">
       {isLoading ? (
