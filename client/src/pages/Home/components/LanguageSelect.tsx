@@ -1,9 +1,6 @@
-import { useEffect } from 'react';
 import Select from '../../../components/Select';
 import Loading from '../../../components/Loading';
 import { useLanguageOptions } from '../../../hooks/useLanguageOptions';
-
-type Language = { label: string; value: string };
 
 type Props = {
   currentLanguage: string;
