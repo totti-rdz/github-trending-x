@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import Layout from '../../components/Layout';
 import LanguageSelect from './components/LanguageSelect';
 import Loading from '../../components/Loading';
+import { useRepositories } from '../../hooks/useRepositories';
 
 type Repo = {
   description: string;
@@ -15,25 +16,8 @@ type Repo = {
 };
 
 const Home = () => {
-  const [data, setData] = useState<Repo[] | undefined>(undefined);
   const [language, setLanguage] = useState('javascript');
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setIsLoading(true);
-        const response = await fetch('/api/trending-repositories/' + language);
-        const data = await response.json();
-        setData(data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    fetchData();
-  }, [language]);
+  const { repositories, isLoading } = useRepositories(language);
 
   return (
     <Layout>
@@ -52,9 +36,9 @@ const Home = () => {
         </div>
       ) : (
         <>
-          {!!data ? (
+          {!!repositories ? (
             <div className="no-scrollbar grid flex-1 justify-center gap-5 overflow-auto px-10">
-              {data.map((repo) => (
+              {repositories.map((repo) => (
                 <div
                   className="max-w-xs rounded-xl border border-purple-600 bg-gray-900 sm:max-w-prose"
                   key={repo.link}
