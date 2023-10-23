@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useFetch } from './useFetch';
 
 export type Repo = {
   description: string;
@@ -12,27 +12,10 @@ export type Repo = {
 };
 
 export const useRepositories = (language: string) => {
-  const [repositories, setRepositories] = useState<Repo[] | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setIsLoading(true);
-        const response = await fetch('/api/trending-repositories/' + language);
-        if (!response.ok) {
-          throw new Error('Network response was not OK - repos');
-        }
-        const data = await response.json();
-        setRepositories(data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    fetchData();
-  }, [language]);
+  const [repositories, isLoading] = useFetch<Repo>(
+    '/api/trending-repositories/' + language,
+    [language]
+  );
 
   return { repositories, isLoading };
 };
