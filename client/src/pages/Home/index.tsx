@@ -4,6 +4,7 @@ import LanguageSelect from './components/LanguageSelect';
 import Loading from '../../components/Loading';
 import { useRepositories } from '../../hooks/useRepositories';
 import RepositoryCard from '../../components/RepositoryCard';
+import Title from '../../components/Title';
 
 const Home = () => {
   const [language, setLanguage] = useState('javascript');
@@ -11,11 +12,7 @@ const Home = () => {
 
   return (
     <Layout>
-      <div className="text-center">
-        <h1 className="mb-6 text-3xl font-bold text-purple-600">
-          Trending GitHub Repositories
-        </h1>
-      </div>
+      <Title text='Trending GitHub Repositories'/>
       <LanguageSelect
         currentLanguage={language}
         setCurrentLanguage={setLanguage}
