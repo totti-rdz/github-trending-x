@@ -82,7 +82,6 @@ export default class Scraper {
         'Scraper was not initialized properly. Please call async function init(), when constructing a new Scraper instance'
       );
 
-    await this.getLanguages();
     const container = await this.getRepositoriesContainer();
 
     container.each((idx, element) => {
