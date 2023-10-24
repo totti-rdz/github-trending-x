@@ -38,6 +38,7 @@ const Home = () => {
                         src={repo.ownerImgSrc}
                         alt={`${repo.owner}'s Avatar`}
                         className="h-14 w-14 rounded-full border border-gray-400"
+                        loading="lazy"
                       />
                     </div>
                     <div className="">
