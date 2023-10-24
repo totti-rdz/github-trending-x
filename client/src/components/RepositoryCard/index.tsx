@@ -6,6 +6,7 @@ type Props = {
 
 const RepositoryCard = ({ repo }: Props) => {
   const { description, link, owner, ownerImgSrc, title } = repo;
+
   return (
     <div
       className="max-w-xs rounded-xl border border-purple-600 bg-gray-900 sm:max-w-prose"
