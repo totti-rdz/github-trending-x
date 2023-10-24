@@ -26,7 +26,7 @@ const Home = () => {
           {!!repositories ? (
             <div className="no-scrollbar grid flex-1 justify-center gap-5 overflow-auto px-10">
               {repositories.map((repo) => (
-                <RepositoryCard repo={repo} />
+                <RepositoryCard repo={repo} key={repo.id} />
               ))}
             </div>
           ) : (
