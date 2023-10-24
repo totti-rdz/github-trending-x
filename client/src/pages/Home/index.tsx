@@ -7,7 +7,7 @@ import RepositoryCard from '../../components/RepositoryCard';
 import Title from '../../components/Title';
 
 const Home = () => {
-  const [language, setLanguage] = useState('javascript');
+  const [language, setLanguage] = useState('');
   const { repositories, isLoading } = useRepositories(language);
 
   return (
