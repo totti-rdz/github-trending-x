@@ -6,6 +6,7 @@ export class RepoController {
     const language = req.params.language || '';
     const scraper = await new Scraper(language).init();
     const result = await scraper.getRepos();
+    if (result.length === 0) res.status(204);
     res.send(result);
   }
   public static async getLanguages(_: Request, res: Response) {
