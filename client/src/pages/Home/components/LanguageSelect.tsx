@@ -9,6 +9,10 @@ type Props = {
 
 const LanguageSelect = ({ currentLanguage, setCurrentLanguage }: Props) => {
   const { languageOptions, isLoading } = useLanguageOptions();
+  const clearLanguageOption = {
+    label: !!currentLanguage ? '--Clear programming language--' : '',
+    value: '',
+  };
 
   const handleLanguageChange = (event: React.ChangeEvent<HTMLSelectElement>) =>
     setCurrentLanguage(event.target.value);
@@ -24,7 +28,7 @@ const LanguageSelect = ({ currentLanguage, setCurrentLanguage }: Props) => {
               name="language"
               label="Choose a programming language:"
               onChange={handleLanguageChange}
-              options={languageOptions}
+              options={[clearLanguageOption, ...languageOptions]}
               value={currentLanguage}
             />
           ) : (
