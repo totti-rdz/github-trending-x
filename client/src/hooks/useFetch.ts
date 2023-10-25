@@ -7,6 +7,7 @@ export const useFetch = <T>(
   initialValue: T | null = null
 ) => {
   const [data, setData] = useState<T | null>(initialValue);
+  const [status, setStatus] = useState<number | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     const apiService = new ApiService();
@@ -14,10 +15,11 @@ export const useFetch = <T>(
     const fetchData = async () => {
       try {
         setIsLoading(true);
-        const data = await apiService.fetch<T>(url);
+        const [data, status] = await apiService.fetch<T>(url);
         if (!!data) setData(data);
         // if data is falsy, reset to initial value
         else setData(initialValue);
+        if (!!status) setStatus(status);
       } catch (error) {
         console.error('Error fetching data:', error);
       } finally {

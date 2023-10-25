@@ -12,10 +12,10 @@ export type Repo = {
 };
 
 export const useRepositories = (language: string) => {
-  const [repositories, isLoading] = useFetch<Repo>(
+  const [repositories, isLoading, status] = useFetch<Repo[]>(
     '/api/trending-repositories/' + language,
     [language]
   );
 
-  return { repositories, isLoading };
+  return { repositories, isLoading, status };
 };
