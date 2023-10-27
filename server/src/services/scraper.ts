@@ -3,8 +3,9 @@ import scrapeUrl from '../utils/scrapeUrl';
 import { logger } from './logger';
 import { deduplicateArrayOfObjects } from '../utils/deduplicateArrayOfObjects';
 
-const baseUrl = 'https://github.com/trending/';
+const baseUrl = 'https://github.com';
 
+const pathDefault = 'trending';
 const languageDefault = 'javascript';
 const queryParamDefault = '?since=daily'; //&spoken_language_code=en';
 
@@ -32,19 +33,21 @@ export type Repo = {
 
 export default class Scraper {
   private $: CheerioAPI | null = null;
+  private path: string;
   private language: string;
 
-  constructor(language = languageDefault) {
+  constructor(language = languageDefault, path = pathDefault) {
+    this.path = encodeURIComponent(path);
     this.language = encodeURIComponent(language);
   }
 
   public async init() {
-    await this.initCheerio(this.language);
+    await this.initCheerio(this.path, this.language);
     return this;
   }
 
-  private async initCheerio(language: string) {
-    this.$ = await this.getHtml(language);
+  private async initCheerio(path: string, language: string) {
+    this.$ = await this.getHtml(path, language);
     logger.info('Cheerio initialized');
   }
 
@@ -53,7 +56,7 @@ export default class Scraper {
     const pattern = /\/([^/?]+)(?:\?|$)/;
 
     // get html without any language - the value of the language specified will be wrong
-    const $ = await this.getHtml('');
+    const $ = await this.getHtml('trending', '');
 
     const languagesList = $(selectors.languagesList);
 
@@ -105,8 +108,8 @@ export default class Scraper {
     return repos;
   }
 
-  private async getHtml(language: string) {
-    const url = baseUrl + language + queryParamDefault;
+  private async getHtml(path: string, language: string) {
+    const url = baseUrl + '/' + path + '/' + language + queryParamDefault;
     const html = await scrapeUrl(url);
     return load(html);
   }
