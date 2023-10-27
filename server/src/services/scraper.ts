@@ -36,7 +36,7 @@ export default class Scraper {
   private path: string;
   private language: string;
 
-  constructor(language = languageDefault, path = pathDefault) {
+  constructor(path = pathDefault, language = languageDefault) {
     this.path = encodeURIComponent(path);
     this.language = encodeURIComponent(language);
   }
