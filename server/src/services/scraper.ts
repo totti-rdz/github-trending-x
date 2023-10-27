@@ -10,7 +10,7 @@ const languageDefault = 'javascript';
 const queryParamDefault = '?since=daily'; //&spoken_language_code=en';
 
 const selectors = {
-  container: '.Box-row',
+  container: 'article.Box-row',
   titleContainer: 'h2.h3 a',
   description: 'p',
   amountStarsAndForks:
