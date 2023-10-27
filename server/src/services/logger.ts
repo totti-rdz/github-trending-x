@@ -1,4 +1,5 @@
 export const logger = {
+  log: (message: string) => console.log(message),
   info: (message: string) =>
     console.info(
       '\x1b[33m%s\x1b[0m', // change font color to yellow
