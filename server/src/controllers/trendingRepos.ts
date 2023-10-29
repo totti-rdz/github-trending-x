@@ -14,4 +14,10 @@ export class RepoController {
     const result = await scraper.getLanguages();
     res.send(result);
   }
+
+  public static async getDevelopers(_: Request, res: Response) {
+    const scraper = await new Scraper('developers', '').init();
+    const result = await scraper.getDevelopers();
+    res.send(result);
+  }
 }
