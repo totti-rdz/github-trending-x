@@ -2,10 +2,11 @@ import { AnyNode, Cheerio, CheerioAPI, load } from 'cheerio';
 import scrapeUrl from '../utils/scrapeUrl';
 import { logger } from './logger';
 import { deduplicateArrayOfObjects } from '../utils/deduplicateArrayOfObjects';
+import { concatUrl } from '../utils/concatStrings';
 
-const baseUrl = 'https://github.com';
+const baseUrl = 'https://github.com/trending';
 
-const pathDefault = 'trending';
+const pathDefault = '';
 const languageDefault = 'javascript';
 const queryParamDefault = '?since=daily'; //&spoken_language_code=en';
 
@@ -17,6 +18,15 @@ const selectors = {
     'div.f6.color-fg-muted.mt-2 a.Link--muted.d-inline-block.mr-3',
   ownerImgSrc: 'img.avatar.mb-1.avatar-user',
   languagesList: '#languages-menuitems a.select-menu-item',
+  containerDevelopers: 'article.Box-row.d-flex',
+  nameDeveloper: 'h1.h3.lh-condensed',
+  userNameDeveloper: 'a.Link--secondary.Link',
+  linkDeveloper: 'h1.h3.lh-condensed a',
+  developerImgSrc: 'img.rounded.avatar-user',
+  developerPopularRepo: 'h1.h4.lh-condensed a',
+  developerPopularRepoDescription: 'div.f6.color-fg-muted.mt-1',
+  developerCompany:
+    'p.mb-3.d-flex.flex-items-center span.Truncate span.Truncate-text',
 };
 
 export type Language = { label: string; value: string };
@@ -109,7 +119,7 @@ export default class Scraper {
   }
 
   private async getHtml(path: string, language: string) {
-    const url = baseUrl + '/' + path + '/' + language + queryParamDefault;
+    const url = concatUrl(baseUrl, path, language, queryParamDefault);
     const html = await scrapeUrl(url);
     return load(html);
   }
@@ -166,6 +176,92 @@ export default class Scraper {
       .find(selectors.ownerImgSrc)
       .first()
       .attr('src')
-      ?.replace('s=40&', '');
+      ?.replace('s=40&', ''); // remove size to get full image
+  }
+
+  public async getDevelopers() {
+    const developers: Developer[] = [];
+    if (!this.$)
+      throw new Error(
+        'Scraper was not initialized properly. Please call async function init(), when constructing a new Scraper instance'
+      );
+
+    const container = await this.getDevelopersContainer();
+
+    container.each((idx, element) => {
+      console.log('idx');
+      const container = this.$!(element);
+      const { avatarImgSrc, company, link, name, popularRepo, userName } =
+        this.getDeveloperData(container);
+
+      developers.push({
+        avatarImgSrc,
+        company,
+        id: idx,
+        link,
+        name,
+        popularRepo,
+        userName,
+      });
+    });
+
+    return developers;
+  }
+
+  private async getDevelopersContainer() {
+    if (!this.$)
+      throw new Error(
+        'Scraper was not initialized properly. Please call async function init(), when constructing a new Scraper instance'
+      );
+    return this.$(selectors.containerDevelopers);
+  }
+
+  private getDeveloperData(container: Cheerio<AnyNode>) {
+    const name = container.find(selectors.nameDeveloper).text().trim();
+    const userName = container.find(selectors.userNameDeveloper).text().trim();
+    const link = container.find(selectors.linkDeveloper).attr('href');
+    const avatarImgSrc = container
+      .find(selectors.developerImgSrc)
+      .attr('src')
+      ?.replace('s=96&', ''); // remove size to get full image
+    const popularRepoTitle = container
+      .find(selectors.developerPopularRepo)
+      .text()
+      .trim();
+    const popularRepoLink = container
+      .find(selectors.developerPopularRepo)
+      .attr('href');
+    const popularRepoDescription = container
+      .find(selectors.developerPopularRepoDescription)
+      .text()
+      .trim();
+    const company = container.find(selectors.developerCompany).text().trim();
+
+    return {
+      avatarImgSrc,
+      company,
+      link,
+      name,
+      popularRepo: {
+        title: popularRepoTitle,
+        link: popularRepoLink,
+        description: popularRepoDescription,
+      },
+      userName,
+    };
   }
 }
+
+type Developer = {
+  avatarImgSrc: string | undefined;
+  company: string;
+  link: string | undefined;
+  id: number;
+  name: string;
+  popularRepo: {
+    title: string;
+    description?: string;
+    link?: string;
+  };
+  userName: string;
+};

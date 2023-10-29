@@ -4,7 +4,7 @@ import Scraper from '../services/scraper';
 export class RepoController {
   public static async getRepos(req: Request, res: Response) {
     const language = req.params.language || '';
-    const scraper = await new Scraper('trending', language).init();
+    const scraper = await new Scraper(undefined, language).init();
     const result = await scraper.getRepos();
     if (result.length === 0) res.status(204);
     res.send(result);
