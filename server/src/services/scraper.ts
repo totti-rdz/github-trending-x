@@ -27,6 +27,8 @@ const selectors = {
   developerPopularRepoDescription: 'div.f6.color-fg-muted.mt-1',
   developerCompany:
     'p.mb-3.d-flex.flex-items-center span.Truncate span.Truncate-text',
+  developerDateJoined:
+    'div.f5.color-fg-muted.my-2.my-md-0 p.mb-3:has(svg.octicon-clock)',
 };
 
 export type Language = { label: string; value: string };
@@ -44,6 +46,7 @@ export type Repo = {
 type Developer = {
   avatarImgSrc: string | undefined;
   company: string;
+  dateJoined?: string;
   link: string | undefined;
   id: number;
   name: string;
@@ -204,12 +207,20 @@ export default class Scraper {
 
     container.each((idx, element) => {
       const container = this.$!(element);
-      const { avatarImgSrc, company, link, name, popularRepo, userName } =
-        this.getDeveloperData(container);
+      const {
+        avatarImgSrc,
+        company,
+        dateJoined,
+        link,
+        name,
+        popularRepo,
+        userName,
+      } = this.getDeveloperData(container);
 
       developers.push({
         avatarImgSrc,
         company,
+        dateJoined,
         id: idx,
         link,
         name,
@@ -249,10 +260,15 @@ export default class Scraper {
       .text()
       .trim();
     const company = container.find(selectors.developerCompany).text().trim();
+    const dateJoined = container
+      .find(selectors.developerDateJoined)
+      .text()
+      .trim();
 
     return {
       avatarImgSrc,
       company,
+      dateJoined: dateJoined || undefined,
       link,
       name,
       popularRepo: {
