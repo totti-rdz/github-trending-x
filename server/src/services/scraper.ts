@@ -41,6 +41,20 @@ export type Repo = {
   ownerImgSrc: string | undefined;
 };
 
+type Developer = {
+  avatarImgSrc: string | undefined;
+  company: string;
+  link: string | undefined;
+  id: number;
+  name: string;
+  popularRepo: {
+    title: string;
+    description?: string;
+    link?: string;
+  };
+  userName: string;
+};
+
 export default class Scraper {
   private $: CheerioAPI | null = null;
   private path: string;
@@ -250,17 +264,3 @@ export default class Scraper {
     };
   }
 }
-
-type Developer = {
-  avatarImgSrc: string | undefined;
-  company: string;
-  link: string | undefined;
-  id: number;
-  name: string;
-  popularRepo: {
-    title: string;
-    description?: string;
-    link?: string;
-  };
-  userName: string;
-};
