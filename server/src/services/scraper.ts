@@ -189,7 +189,6 @@ export default class Scraper {
     const container = await this.getDevelopersContainer();
 
     container.each((idx, element) => {
-      console.log('idx');
       const container = this.$!(element);
       const { avatarImgSrc, company, link, name, popularRepo, userName } =
         this.getDeveloperData(container);
