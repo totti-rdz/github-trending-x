@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Layout from '../../components/Layout';
-import LanguageSelect from './components/LanguageSelect';
+import LanguageSelect from '../../components/LanguageSelect';
 import Loading from '../../components/Loading';
 import { useRepositories } from '../../hooks/useRepositories';
 import RepositoryCard from '../../components/RepositoryCard';

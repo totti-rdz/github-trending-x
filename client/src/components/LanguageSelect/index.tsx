@@ -1,6 +1,6 @@
-import Select from '../../../components/Select';
-import Loading from '../../../components/Loading';
-import { useLanguageOptions } from '../../../hooks/useLanguageOptions';
+import Select from '../Select';
+import Loading from '../Loading';
+import { useLanguageOptions } from '../../hooks/useLanguageOptions';
 
 type Props = {
   currentLanguage: string;
