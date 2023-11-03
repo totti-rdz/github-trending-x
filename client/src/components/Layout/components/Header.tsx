@@ -27,7 +27,9 @@ const Header = () => {
         <div className="">
           <ul className="space-x-5">
             {links.map(({ label, href }) => (
-              <NavLink href={href}>{label}</NavLink>
+              <NavLink href={href} key={label}>
+                {label}
+              </NavLink>
             ))}
           </ul>
         </div>
