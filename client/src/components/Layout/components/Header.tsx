@@ -1,4 +1,4 @@
-import Link from '../../Link';
+import NavLink from './NavLink';
 import { classNames } from '../../../utils/classNames';
 
 const links = [
@@ -16,12 +16,12 @@ const Header = () => {
         )}
       >
         <div className="flex-1 text-xl font-bold text-purple-600">
-          Trending Github X
+        Trending Github X
         </div>
         <div className="">
           <ul className="space-x-5">
             {links.map(({ label, href }) => (
-              <Link href={href}>{label}</Link>
+              <NavLink href={href}>{label}</NavLink>
             ))}
           </ul>
         </div>

@@ -1,6 +1,6 @@
 import { NavLink as RouterNavLink } from 'react-router-dom';
-import { getHoverAnimationClasses } from '../../utils/getHoverAnimationClasses';
-import { classNames } from '../../utils/classNames';
+import { getHoverAnimationClasses } from '../../../../utils/getHoverAnimationClasses';
+import { classNames } from '../../../../utils/classNames';
 
 type Props = {
   children: React.ReactNode;
