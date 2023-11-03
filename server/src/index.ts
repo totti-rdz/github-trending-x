@@ -2,7 +2,7 @@ import express from 'express';
 import path from 'path';
 import dotenv from 'dotenv';
 import { routes } from './routes';
-import { appendQueryParams } from './utils/appendQueryParams';
+import { QueryParamsHelper } from './utils/QueryParamsHelper';
 import { logger } from './services/logger';
 
 dotenv.config();
@@ -18,7 +18,9 @@ app.use('/api', routes());
 app.get('*', (req, res, next) => {
   if (environment === 'development') {
     res.redirect(
-      'http://localhost:5173' + req.path + appendQueryParams(req.query)
+      'http://localhost:5173' +
+        req.path +
+        QueryParamsHelper.appendQueryObject(req.query)
     );
     return;
   }

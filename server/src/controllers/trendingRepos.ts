@@ -1,12 +1,12 @@
 import { Request, Response } from 'express';
 import Scraper from '../services/scraper';
-import { getQueryParamsFromUrl } from '../utils/getQueryParamsFromURL';
+import { QueryParamsHelper } from '../utils/QueryParamsHelper';
 
 export class RepoController {
   public static async getRepos(req: Request, res: Response) {
     const language = req.params.language || '';
 
-    const queryParams = getQueryParamsFromUrl(req.url);
+    const queryParams = QueryParamsHelper.getQueryStringFromUrl(req.url);
 
     const scraper = await new Scraper(undefined, language, queryParams).init();
     const result = await scraper.getRepos();
