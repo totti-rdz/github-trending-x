@@ -8,7 +8,7 @@ const baseUrl = 'https://github.com/trending';
 
 const pathDefault = '';
 const languageDefault = 'javascript';
-const queryParamDefault = '?since=daily'; //&spoken_language_code=en';
+const queryParamsDefault = '?since=daily'; //&spoken_language_code=en';
 
 const selectors = {
   container: 'article.Box-row',
@@ -62,19 +62,29 @@ export default class Scraper {
   private $: CheerioAPI | null = null;
   private path: string;
   private language: string;
+  private queryParams: string;
 
-  constructor(path = pathDefault, language = languageDefault) {
+  constructor(
+    path = pathDefault,
+    language = languageDefault,
+    queryParams = queryParamsDefault
+  ) {
     this.path = encodeURIComponent(path);
     this.language = encodeURIComponent(language);
+    this.queryParams = queryParams;
   }
 
   public async init() {
-    await this.initCheerio(this.path, this.language);
+    await this.initCheerio(this.path, this.language, this.queryParams);
     return this;
   }
 
-  private async initCheerio(path: string, language: string) {
-    this.$ = await this.getHtml(path, language);
+  private async initCheerio(
+    path: string,
+    language: string,
+    queryParams: string
+  ) {
+    this.$ = await this.getHtml(path, language, queryParams);
     logger.info('Cheerio initialized');
   }
 
@@ -83,7 +93,7 @@ export default class Scraper {
     const pattern = /\/([^/?]+)(?:\?|$)/;
 
     // get html without any language - the value of the language specified will be wrong
-    const $ = await this.getHtml('trending', '');
+    const $ = await this.getHtml('trending', '', '');
 
     const languagesList = $(selectors.languagesList);
 
@@ -135,8 +145,9 @@ export default class Scraper {
     return repos;
   }
 
-  private async getHtml(path: string, language: string) {
-    const url = concatUrl(baseUrl, path, language, queryParamDefault);
+  private async getHtml(path: string, language: string, queryParams: string) {
+    const url = concatUrl(baseUrl, path, language, queryParams);
+  
     const html = await scrapeUrl(url);
     return load(html);
   }
