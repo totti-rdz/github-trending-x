@@ -18,7 +18,7 @@ export type Developer = {
 // TODO: add language param to API route for developers; add language param to url here
 export const useDevelopers = (language: string) => {
   const [developers, isLoading, status] = useFetch<Developer[]>(
-    '/api/developers/',
+    '/api/trending-developers/',
     [language]
   );
 
