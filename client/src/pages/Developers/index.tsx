@@ -15,7 +15,7 @@ const DevelopersPage = () => {
 
   return (
     <Layout>
-      <Title text="Trending GitHub Repositories" />
+      <Title text="Trending GitHub Developers" />
       <LanguageSelect
         currentLanguage={language}
         setCurrentLanguage={setLanguage}
