@@ -9,7 +9,7 @@ const RepositoryCard = ({ repo }: Props) => {
 
   return (
     <div
-      className="max-w-xs rounded-xl border border-purple-600 bg-gray-900 sm:max-w-prose"
+      className="max-w-xs rounded-xl border border-purple-600 bg-background-secondary sm:max-w-prose"
       key={link}
     >
       <div className="flex flex-row gap-4 rounded-lg bg-purple-600 px-4 py-2">
