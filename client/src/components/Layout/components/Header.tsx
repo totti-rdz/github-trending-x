@@ -1,5 +1,6 @@
 import NavLink from './NavLink';
 import { classNames } from '../../../utils/classNames';
+import { Link } from 'react-router-dom';
 
 const links = [
   { label: 'repositories', href: '/' },
@@ -15,8 +16,13 @@ const Header = () => {
           'lg:gap-4 lg:px-4 lg:py-4'
         )}
       >
-        <div className="flex-1 text-xl font-bold text-purple-600">
-        Trending Github X
+        <div className="flex-1">
+          <Link
+            to={'/'}
+            className="select-none text-xl font-bold text-purple-600"
+          >
+            Trending Github X
+          </Link>
         </div>
         <div className="">
           <ul className="space-x-5">
