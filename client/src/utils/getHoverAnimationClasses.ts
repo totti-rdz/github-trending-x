@@ -11,7 +11,7 @@ export const getHoverAnimationClasses = ({ isIcon }: Options = {}) => {
   const parent = classNames(
     `group inline-block rounded-lg transition ${duration} ${timingFunction}`,
     isIcon ? 'p-1' : 'px-2 py-1',
-    'hover:scale-105 hover:bg-gray-700 hover:text-white'
+    'hover:scale-105 hover:bg-gray-700'
   );
   const child = classNames(
     `inline-block transition ${duration} ${timingFunction}`,
