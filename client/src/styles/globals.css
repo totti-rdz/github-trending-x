@@ -8,17 +8,18 @@
   --background-secondary: #e6e6e6;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground: #fafafa;
-    --background: #000000;
-    --background-secondary: #111827;
-  }
+:root.dark {
+  --foreground: #fafafa;
+  --background: #000000;
+  --background-secondary: #111827;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
+
+  transition-duration: 0.5s;
+  transition-property: var(--foreground), var(--background);
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
