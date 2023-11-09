@@ -17,6 +17,9 @@
 body {
   color: var(--foreground);
   background: var(--background);
+
+  transition-duration: 0.5s;
+  transition-property: var(--foreground), var(--background);
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
