@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import Home from './pages/Home';
@@ -26,6 +27,11 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
+  // fix showing style for light mode and then transitioning to dark mode when loading page on dark mode
+  useEffect(() => {
+    document.body.style.transitionDuration = '0.5s';
+  }, [document]);
+
   return (
     <>
       <RouterProvider router={router} />
