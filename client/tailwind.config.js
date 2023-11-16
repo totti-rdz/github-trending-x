@@ -8,7 +8,7 @@ export default {
         foreground: 'var(--foreground);',
         background: 'var(--background);',
         'background-secondary': 'var(--background-secondary)',
-        accent: { 600: '#9333ea' },
+        accent: { 600: 'var(--accent-600)' },
       },
     },
   },
