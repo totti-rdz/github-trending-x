@@ -16,8 +16,8 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="mx-auto w-full max-w-screen-xl">
-      <header
+    <header className="mx-auto w-full max-w-screen-xl">
+      <div
         className={classNames(
           'mx-4 grid grid-cols-2 gap-0 px-2 py-2 md:grid-cols-[1fr_auto_1fr]',
           'lg:gap-4 lg:px-4 lg:py-4'
@@ -31,7 +31,7 @@ const Header = () => {
             Trending Github X
           </Link>
         </div>
-        <div className="hidden md:block">
+        <nav className="hidden md:block" aria-label="primary">
           <ul className="gap-5">
             {links.map(({ label, href }) => (
               <NavLink href={href} key={label}>
@@ -39,7 +39,7 @@ const Header = () => {
               </NavLink>
             ))}
           </ul>
-        </div>
+        </nav>
         <div className="col-span-2 hidden items-center justify-center md:col-span-1 md:flex md:justify-end">
           <DarkModeToggle />
         </div>
@@ -48,8 +48,8 @@ const Header = () => {
           <MenuButton className="z-50" isOpen={isOpen} setIsOpen={setIsOpen} />
           <MenuMobile links={links} isOpen={isOpen} />
         </div>
-      </header>
-    </div>
+      </div>
+    </header>
   );
 };
 
