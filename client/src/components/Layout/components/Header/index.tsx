@@ -26,9 +26,11 @@ const Header = () => {
         <div className="z-50 mr-0 flex items-center md:mr-20">
           <Link
             to={'/'}
-            className="select-none whitespace-nowrap text-xl font-bold text-purple-600"
+            className="cursor-pointer select-none whitespace-nowrap text-xl font-bold text-purple-600"
+            title="Trending Github X"
           >
-            Trending Github X
+            <span aria-hidden={true}>Trending Github X</span>
+            <span className="sr-only">Home</span>
           </Link>
         </div>
         <nav className="hidden md:block" aria-label="primary">
@@ -45,8 +47,13 @@ const Header = () => {
         </div>
 
         <div className="flex justify-end md:hidden">
-          <MenuButton className="z-50" isOpen={isOpen} setIsOpen={setIsOpen} />
-          <MenuMobile links={links} isOpen={isOpen} />
+          <MenuButton
+            className="z-50"
+            isOpen={isOpen}
+            setIsOpen={setIsOpen}
+            menuId="mobile-menu"
+          />
+          <MenuMobile id="mobile-menu" links={links} isOpen={isOpen} />
         </div>
       </div>
     </header>
