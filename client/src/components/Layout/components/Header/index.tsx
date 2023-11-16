@@ -1,5 +1,5 @@
 import NavLink from './NavLink';
-import { classNames } from '../../../utils/classNames';
+import { classNames } from '../../../../utils/classNames';
 import { Link } from 'react-router-dom';
 import MenuButton from './MenuButton';
 import DarkModeToggle from './DarkModeToggle';

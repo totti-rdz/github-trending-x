@@ -1,5 +1,5 @@
 import { NavLink as RouterNavLink } from 'react-router-dom';
-import { classNames } from '../../../utils/classNames';
+import { classNames } from '../../../../utils/classNames';
 
 type NavLinkMobileProps = {
   children: React.ReactNode;

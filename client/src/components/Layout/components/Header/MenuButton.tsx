@@ -1,4 +1,4 @@
-import MenuIcon from '../../icons/MenuIconAnimated';
+import MenuIcon from '../../../icons/MenuIconAnimated';
 
 type Props = {
   className?: string;

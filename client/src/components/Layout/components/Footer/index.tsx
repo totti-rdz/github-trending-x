@@ -1,4 +1,4 @@
-import { classNames } from '../../../utils/classNames';
+import { classNames } from '../../../../utils/classNames';
 import Copyright from './Copyright';
 import SocialLinkList from './SocialLinkList';
 

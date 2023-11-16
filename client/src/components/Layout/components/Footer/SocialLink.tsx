@@ -1,6 +1,6 @@
-import SocialIcon from '../../icons/SocialIcon';
-import { StringHelper } from '../../../utils/StringHelper';
-import { getHoverAnimationClasses } from '../../../utils/getHoverAnimationClasses';
+import SocialIcon from '../../../icons/SocialIcon';
+import { StringHelper } from '../../../../utils/StringHelper';
+import { getHoverAnimationClasses } from '../../../../utils/getHoverAnimationClasses';
 
 type Props = { href: string; icon: SocialIcon };
 
