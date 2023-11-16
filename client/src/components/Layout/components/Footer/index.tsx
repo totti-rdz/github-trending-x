@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <footer
       className={classNames(
-        'flex flex-col items-center justify-center gap-2 px-2 py-2',
+        'flex flex-col items-center justify-center gap-0 px-2 py-2',
         'lg:flex-row-reverse lg:justify-around lg:gap-4 lg:px-4 lg:py-4'
       )}
     >
