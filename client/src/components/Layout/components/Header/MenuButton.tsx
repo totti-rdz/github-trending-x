@@ -12,6 +12,8 @@ const MenuButton = ({ className, isOpen, setIsOpen }: Props) => {
       <button
         className="group h-10 w-10 overflow-hidden rounded-full border-2 border-purple-600 p-1"
         onClick={() => setIsOpen((current) => !current)}
+        aria-label={`${isOpen ? 'Close' : 'Open'} menu`}
+        aria-expanded={`${isOpen}`}
       >
         <div
           className="grid h-full w-full place-content-center"
