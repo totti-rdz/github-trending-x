@@ -60,7 +60,7 @@ const DeveloperCard = ({ developer }: Props) => {
             <span className="">{dateJoined}</span>
           </div>
         )}
-        {/* <p className="overflow-hidden text-ellipsis text-gray-400">
+        {/* <p className="overflow-hidden text-ellipsis text-gray-600 dark:text-gray-400">
           {description}
         </p> */}
         <a

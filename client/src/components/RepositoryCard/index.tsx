@@ -27,7 +27,7 @@ const RepositoryCard = ({ repo }: Props) => {
         </div>
       </div>
       <div className="p-4">
-        <p className="overflow-hidden text-ellipsis text-gray-400">
+        <p className="overflow-hidden text-ellipsis text-gray-600 dark:text-gray-400">
           {description}
         </p>
         <a
