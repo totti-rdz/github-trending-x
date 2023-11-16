@@ -1,6 +1,6 @@
 import NavLink from './NavLink';
 import { classNames } from '../../../../utils/classNames';
-import { Link } from 'react-router-dom';
+import Logo from './Logo';
 import MenuButton from './MenuButton';
 import DarkModeToggle from './DarkModeToggle';
 import MenuMobile from './MenuMobile';
@@ -24,14 +24,7 @@ const Header = () => {
         )}
       >
         <div className="z-50 mr-0 flex items-center md:mr-20">
-          <Link
-            to={'/'}
-            className="cursor-pointer select-none whitespace-nowrap text-xl font-bold text-purple-600"
-            title="Trending Github X"
-          >
-            <span aria-hidden={true}>Trending Github X</span>
-            <span className="sr-only">Home</span>
-          </Link>
+          <Logo />
         </div>
         <nav className="hidden md:block" aria-label="primary">
           <ul className="gap-5">
