@@ -3,7 +3,6 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import Home from './pages/Home';
 import About from './pages/About';
-import Other from './pages/Other';
 import DevelopersPage from './pages/Developers';
 import ErrorPage from './pages/Error';
 
@@ -20,14 +19,6 @@ const router = createBrowserRouter([
   {
     path: '/developers',
     element: <DevelopersPage />,
-  },
-  {
-    path: '/other',
-    element: <Other />,
-  },
-  {
-    path: '/other/:test',
-    element: <Other />,
   },
 ]);
 
