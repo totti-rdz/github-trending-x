@@ -1,10 +1,8 @@
 import NavLink from './NavLink';
 import { classNames } from '../../../../utils/classNames';
 import Logo from './Logo';
-import MenuButton from './MenuButton';
 import DarkModeToggle from './DarkModeToggle';
 import MenuMobile from './MenuMobile';
-import { useState } from 'react';
 
 const links = [
   { label: 'repositories', href: '/' },
@@ -13,8 +11,6 @@ const links = [
 ];
 
 const Header = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
   return (
     <header className="mx-auto w-full max-w-screen-xl">
       <div
@@ -40,13 +36,7 @@ const Header = () => {
         </div>
 
         <div className="flex justify-end md:hidden">
-          <MenuButton
-            className="z-50"
-            isOpen={isOpen}
-            setIsOpen={setIsOpen}
-            menuId="mobile-menu"
-          />
-          <MenuMobile id="mobile-menu" links={links} isOpen={isOpen} />
+          <MenuMobile links={links} />
         </div>
       </div>
     </header>
