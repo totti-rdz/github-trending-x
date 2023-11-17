@@ -7,7 +7,7 @@ import MenuMobile from './MenuMobile';
 const links = [
   { label: 'repositories', href: '/' },
   { label: 'developers', href: '/developers' },
-  { label: 'other', href: '/Other' },
+  { label: 'about', href: '/about' },
 ];
 
 const Header = () => {
