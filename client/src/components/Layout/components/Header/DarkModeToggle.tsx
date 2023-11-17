@@ -8,7 +8,8 @@ type Props = {};
 const DarkModeToggle = ({}: Props) => {
   const [isDarkMode, setIsDarkMode] = useState(DarkMode.isEnabled());
 
-  const handleClick = () => {
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    event.stopPropagation();
     isDarkMode ? DarkMode.disable() : DarkMode.enable();
     setIsDarkMode((current) => !current);
   };
