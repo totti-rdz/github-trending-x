@@ -4,15 +4,16 @@ type Props = {
   className?: string;
   isOpen: boolean;
   menuId: string;
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  toggleMenu: ()=>void;
 };
 
-const MenuButton = ({ className, isOpen, menuId, setIsOpen }: Props) => {
+const MenuButton = ({ className, isOpen, menuId, toggleMenu }: Props) => {
+  
   return (
     <div className={className}>
       <button
         className="group h-10 w-10 overflow-hidden rounded-full border-2 border-purple-600 p-1"
-        onClick={() => setIsOpen((current) => !current)}
+        onClick={toggleMenu}
         aria-label={`${isOpen ? 'Close' : 'Open'} menu`}
         aria-controls={menuId}
         aria-expanded={`${isOpen}`}

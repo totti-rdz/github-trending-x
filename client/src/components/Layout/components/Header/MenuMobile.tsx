@@ -8,15 +8,22 @@ const MenuMobile = ({ links }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
   const menuId = 'mobile-menu';
 
+  const toggleMenu = () => setIsOpen((current) => !current);
+
   return (
     <>
       <MenuButton
         className="z-50"
         isOpen={isOpen}
-        setIsOpen={setIsOpen}
+        toggleMenu={toggleMenu}
         menuId={menuId}
       />
-      <MenuOverlay id={menuId} links={links} isOpen={isOpen} />
+      <MenuOverlay
+        id={menuId}
+        links={links}
+        isOpen={isOpen}
+        toggleMenu={toggleMenu}
+      />
     </>
   );
 };
