@@ -1,7 +1,7 @@
 import NavLinkMobile from './NavLinkMobile';
 import DarkModeToggle from './DarkModeToggle';
 
-type Link = {
+export type Link = {
   label: string;
   href: string;
 };
