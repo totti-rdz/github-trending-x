@@ -25,7 +25,7 @@ const Select = ({
       <select
         name={name}
         id={name + '-select'}
-        className="rounded-lg bg-purple-600 px-2 py-1"
+        className="rounded-lg bg-accent-600 px-2 py-1"
         value={value}
         onChange={onChange}
       >

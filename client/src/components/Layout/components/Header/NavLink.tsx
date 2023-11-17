@@ -20,7 +20,7 @@ const NavLink = ({ children, href }: Props) => {
         <span
           className={classNames(
             isActive
-              ? 'underline decoration-purple-600 decoration-2 underline-offset-4'
+              ? 'underline decoration-accent-600 decoration-2 underline-offset-4'
               : hoverAnimationClass.child
           )}
         >

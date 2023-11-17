@@ -17,7 +17,7 @@ const DarkModeToggle = ({}: Props) => {
   return (
     <div className="">
       <button
-        className="h-10 w-10 overflow-hidden rounded-full border-2 border-purple-600 p-1"
+        className="h-10 w-10 overflow-hidden rounded-full border-2 border-accent-600 p-1"
         onClick={handleClick}
         type="button"
       >

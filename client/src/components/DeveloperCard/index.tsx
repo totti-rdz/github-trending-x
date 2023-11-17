@@ -20,10 +20,10 @@ const DeveloperCard = ({ developer }: Props) => {
 
   return (
     <div
-      className="max-w-xs rounded-xl border border-purple-600 bg-background-secondary sm:max-w-prose"
+      className="max-w-xs rounded-xl border border-accent-600 bg-background-secondary sm:max-w-prose"
       key={link}
     >
-      <div className="flex flex-row gap-4 rounded-lg bg-purple-600 px-4 py-2">
+      <div className="flex flex-row gap-4 rounded-lg bg-accent-600 px-4 py-2">
         <div className="grid place-content-center">
           <img
             src={avatarImgSrc}
@@ -41,7 +41,7 @@ const DeveloperCard = ({ developer }: Props) => {
         {!!popularRepo?.title && (
           <div>
             <div className="flex flex-row items-center gap-1">
-              <FlameIcon className="inline h-4 w-4 text-purple-600" />
+              <FlameIcon className="inline h-4 w-4 text-accent-600" />
               <span className="text-sm">Popular Repository:</span>
             </div>
             <h4 className="text-base font-medium">{popularRepo.title}</h4>
@@ -67,7 +67,7 @@ const DeveloperCard = ({ developer }: Props) => {
           href={'https://www.github.com' + link}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-2 inline-block text-purple-600 hover:underline"
+          className="mt-2 inline-block text-accent-600 hover:underline"
         >
           View on GitHub
         </a>

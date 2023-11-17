@@ -16,7 +16,7 @@ const NavLinkMobile = ({ children, href }: NavLinkMobileProps) => {
   return (
     <RouterNavLink
       className={
-        'w-full border-b border-purple-600 bg-[linear-gradient(to_right,_transparent_50%,_var(--accent-600)_50%)] bg-[length:200%_100%] transition-[background-position] duration-150 first:border-t active:bg-[position:-100%_0] [@media(hover:hover)]:hover:bg-[position:-100%_0]'
+        'w-full border-b border-accent-600 bg-[linear-gradient(to_right,_transparent_50%,_var(--accent-600)_50%)] bg-[length:200%_100%] transition-[background-position] duration-150 first:border-t active:bg-[position:-100%_0] [@media(hover:hover)]:hover:bg-[position:-100%_0]'
       }
       to={href}
       onClick={handleClick}

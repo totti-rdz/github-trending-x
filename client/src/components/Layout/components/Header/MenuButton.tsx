@@ -4,15 +4,14 @@ type Props = {
   className?: string;
   isOpen: boolean;
   menuId: string;
-  toggleMenu: ()=>void;
+  toggleMenu: () => void;
 };
 
 const MenuButton = ({ className, isOpen, menuId, toggleMenu }: Props) => {
-  
   return (
     <div className={className}>
       <button
-        className="group h-10 w-10 overflow-hidden rounded-full border-2 border-purple-600 p-1"
+        className="group h-10 w-10 overflow-hidden rounded-full border-2 border-accent-600 p-1"
         onClick={toggleMenu}
         aria-label={`${isOpen ? 'Close' : 'Open'} menu`}
         aria-controls={menuId}
