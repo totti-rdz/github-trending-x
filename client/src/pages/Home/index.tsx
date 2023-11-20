@@ -6,20 +6,31 @@ import { useRepositories } from '../../hooks/useRepositories';
 import RepositoryCard from '../../components/RepositoryCard';
 import Title from '../../components/Title';
 import { getHttpCodeMessage } from '../../utils/getHttpCodeMessage';
+import LanguageSpokenSelect from '../../components/LanguageSpokenSelect/index.tsx';
 
 const Home = () => {
   const [language, setLanguage] = useState('');
-  const { repositories, isLoading, status } = useRepositories(language);
+  const [spokenLanguage, setSpokenLanguage] = useState('');
+  const { repositories, isLoading, status } = useRepositories(
+    language,
+    spokenLanguage
+  );
 
   const errorMessage = getHttpCodeMessage(status);
 
   return (
     <Layout>
       <Title text="Trending GitHub Repositories" />
-      <LanguageSelect
-        currentLanguage={language}
-        setCurrentLanguage={setLanguage}
-      />
+      <div className="mx-auto my-5 flex flex-col justify-center gap-2 sm:flex-row">
+        <LanguageSpokenSelect
+          currentSpokenLanguage={spokenLanguage}
+          setCurrentSpokenLanguage={setSpokenLanguage}
+        />
+        <LanguageSelect
+          currentLanguage={language}
+          setCurrentLanguage={setLanguage}
+        />
+      </div>
       <div className="grid flex-1 place-content-center overflow-auto px-10">
         {isLoading ? (
           <Loading size="lg" />
