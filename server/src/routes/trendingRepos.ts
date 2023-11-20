@@ -5,6 +5,8 @@ const router = express.Router();
 
 router.get('/programming-languages', RepoController.getLanguages);
 
+router.get('/spoken-languages', RepoController.getSpokenLanguages);
+
 router.get('/trending-developers', RepoController.getDevelopers);
 router.get('/trending-developers/:language', RepoController.getDevelopers);
 
