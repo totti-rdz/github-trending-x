@@ -18,6 +18,8 @@ const selectors = {
     'div.f6.color-fg-muted.mt-2 a.Link--muted.d-inline-block.mr-3',
   ownerImgSrc: 'img.avatar.mb-1.avatar-user',
   languagesList: '#languages-menuitems a.select-menu-item',
+  spokenLanguagesList:
+    '#select-menu-spoken-language .select-menu-list a.select-menu-item',
   containerDevelopers: 'article.Box-row.d-flex',
   nameDeveloper: 'h1.h3.lh-condensed',
   userNameDeveloper: 'a.Link--secondary.Link',
@@ -115,6 +117,33 @@ export default class Scraper {
     return uniqueLanguages;
   }
 
+  public async getSpokenLanguages() {
+    const spokenLanguages: Language[] = [];
+    const pattern = /spoken_language_code=([^&]+)/;
+
+    // get html without any language - the value of the language specified will be wrong
+    const $ = await this.getHtml('trending', '', '');
+
+    const spokenLanguagesList = $(selectors.spokenLanguagesList);
+
+    spokenLanguagesList.each((_, element) => {
+      const elem = $(element);
+
+      const label = elem.text().trim();
+      const value = elem.attr('href');
+      const match = value?.match(pattern);
+      if (!match) return;
+      spokenLanguages.push({ label, value: match[1] });
+    });
+
+    const uniqueSpokenLanguages = deduplicateArrayOfObjects<Language>(
+      spokenLanguages,
+      'value'
+    );
+
+    return uniqueSpokenLanguages;
+  }
+
   public async getRepos() {
     const repos: Repo[] = [];
     if (!this.$)
@@ -147,7 +176,7 @@ export default class Scraper {
 
   private async getHtml(path: string, language: string, queryParams: string) {
     const url = concatUrl(baseUrl, path, language, queryParams);
-  
+
     const html = await scrapeUrl(url);
     return load(html);
   }
