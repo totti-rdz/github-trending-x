@@ -11,11 +11,19 @@ export type Repo = {
   title: string;
 };
 
-export const useRepositories = (language: string) => {
-  const [repositories, isLoading, status] = useFetch<Repo[]>(
-    '/api/trending-repositories/' + language,
-    [language]
-  );
+export const useRepositories = (
+  language: string,
+  spokenLanguage: string = ''
+) => {
+  const path =
+    '/api/trending-repositories/' +
+    language +
+    (spokenLanguage && '?spoken-language=' + spokenLanguage);
+
+  const [repositories, isLoading, status] = useFetch<Repo[]>(path, [
+    language,
+    spokenLanguage,
+  ]);
 
   return { repositories, isLoading, status };
 };
