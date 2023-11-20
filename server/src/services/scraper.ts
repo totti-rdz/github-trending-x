@@ -175,6 +175,9 @@ export default class Scraper {
   }
 
   private async getHtml(path: string, language: string, queryParams: string) {
+    if (!!queryParams && !queryParams.startsWith('?'))
+      queryParams = '?' + queryParams;
+
     const url = concatUrl(baseUrl, path, language, queryParams);
 
     const html = await scrapeUrl(url);
