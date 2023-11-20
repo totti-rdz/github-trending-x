@@ -6,9 +6,19 @@ export class RepoController {
   public static async getRepos(req: Request, res: Response) {
     const language = req.params.language || '';
 
-    const queryParams = QueryParamsHelper.getQueryStringFromUrl(req.url);
+    const queryString = QueryParamsHelper.getQueryStringFromUrl(req.url);
+    const queryParams = new URLSearchParams(queryString);
+    if (queryParams.has('spoken-language')) {
+      const spokenLanguageCode = queryParams.get('spoken-language');
+      queryParams.append('spoken_language_code', spokenLanguageCode || '');
+      queryParams.delete('spoken-language');
+    }
 
-    const scraper = await new Scraper(undefined, language, queryParams).init();
+    const scraper = await new Scraper(
+      undefined,
+      language,
+      queryParams.toString()
+    ).init();
     const result = await scraper.getRepos();
     if (result.length === 0) res.status(204);
     res.send(result);
