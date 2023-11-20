@@ -17,11 +17,12 @@ const LanguageSpokenSelect = ({
     value: '',
   };
 
-  const handleSpokenLanguageChange = (event: React.ChangeEvent<HTMLSelectElement>) =>
-    setCurrentSpokenLanguage(event.target.value);
+  const handleSpokenLanguageChange = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => setCurrentSpokenLanguage(event.target.value);
 
   return (
-    <div className="my-5 grid h-14 place-content-center">
+    <div className="">
       {isLoading ? (
         <Loading />
       ) : (

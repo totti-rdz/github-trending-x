@@ -12,20 +12,14 @@ type Props = {
   value: string;
 };
 
-const Select = ({
-  label,
-  name,
-  onChange,
-  options,
-  value,
-}: Props) => {
+const Select = ({ label, name, onChange, options, value }: Props) => {
   return (
     <>
       {!!label && <label htmlFor={name + '-select'}>{label}</label>}
       <select
         name={name}
         id={name + '-select'}
-        className="rounded-lg bg-accent-600 px-2 py-1"
+        className="block rounded-lg bg-accent-600 px-2 py-1"
         value={value}
         onChange={onChange}
       >
