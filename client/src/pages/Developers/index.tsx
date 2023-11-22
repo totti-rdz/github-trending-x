@@ -16,10 +16,12 @@ const DevelopersPage = () => {
   return (
     <Layout>
       <Title text="Trending GitHub Developers" />
-      <LanguageSelect
-        currentLanguage={language}
-        setCurrentLanguage={setLanguage}
-      />
+      <div className="mx-auto my-5 flex flex-col justify-center gap-2 sm:flex-row">
+        <LanguageSelect
+          currentLanguage={language}
+          setCurrentLanguage={setLanguage}
+        />
+      </div>
       <div className="grid flex-1 place-content-center overflow-auto px-10">
         {isLoading ? (
           <Loading size="lg" />
