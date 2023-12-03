@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import Layout from '../../components/Layout';
-import LanguageSelect from '../../components/LanguageSelect';
-import Loading from '../../components/Loading';
-import { useRepositories } from '../../hooks/useRepositories';
-import RepositoryCard from '../../components/RepositoryCard';
-import Title from '../../components/Title';
-import { getHttpCodeMessage } from '../../utils/getHttpCodeMessage';
-import LanguageSpokenSelect from '../../components/LanguageSpokenSelect/index.tsx';
+import Layout from '../../components/Layout/index.tsx';
+import LanguageSelect from '../../components/LanguageSelect/index.tsx';
+import Loading from '../../components/Loading/index.tsx';
+import { useRepositories } from '../../hooks/useRepositories.ts';
+import RepositoryCard from '../../components/RepositoryCard/index.tsx';
+import Title from '../../components/Title/index.tsx';
+import { getHttpCodeMessage } from '../../utils/getHttpCodeMessage.ts';
+import LanguageSpokenSelect from '../../components/LanguageSpokenSelect/index.tsx/index.tsx';
 
 const Home = () => {
   const [language, setLanguage] = useState('');
