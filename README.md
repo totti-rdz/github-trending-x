@@ -10,7 +10,7 @@
 This project started as a small project to learn mainly web scraping. Out of eagerness to explore and learn more, this project evolved into a monorepo containing an express backend that serves a single-page React application (powered by Vite), all written in TypeScript. While creating the monorepo, a primary focus was placed on improving the Developer Experience (DX). Resulting in needing to use only one localhost port for both the backend and the frontend in development. Plus, there's hot module reloading for the frontend, and the backend automatically restarts when changes are made, eliminating the need for manual reloading.
 In production, the entire application is managed by the Express backend, which includes serving the frontend. This means that you can access both the frontend and backend API using the same URL.
 
-Currently the frontend consists of two dummy pages, while the backend api scrapes the user name and project title of Github's trending repositories.
+Currently the frontend consists of two pages, that list current github trending repositories or github trending developers and an about page, while the backend api scrapes informations of Github's trending repositories and developers.
 
 ## Features
 
