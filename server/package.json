@@ -1,5 +1,5 @@
 {
-  "name": "node-webscraper-github-server",
+  "name": "@github-trending-x/server",
   "version": "1.0.0",
   "description": "",
   "scripts": {
