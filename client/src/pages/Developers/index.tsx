@@ -15,7 +15,7 @@ const DevelopersPage = () => {
 
   return (
     <Layout>
-      <Title text="Trending GitHub Developers" />
+      <Title text="GitHub Trending Developers" />
       <div className="mx-auto my-5 flex flex-col justify-center gap-2 sm:flex-row">
         <LanguageSelect
           currentLanguage={language}

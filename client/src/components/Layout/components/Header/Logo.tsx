@@ -5,9 +5,9 @@ const Logo = () => {
     <Link
       to={'/'}
       className="cursor-pointer select-none whitespace-nowrap text-xl font-bold text-accent-600"
-      title="Trending Github X"
+      title="Github Trending X"
     >
-      <span aria-hidden={true}>Trending Github X</span>
+      <span aria-hidden={true}>Github Trending X</span>
       <span className="sr-only">Home</span>
     </Link>
   );
