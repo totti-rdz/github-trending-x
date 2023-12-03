@@ -1,4 +1,4 @@
-# node-webscraper-github
+# Github trending X
 
 - [Description](#description)
 - [Features](#features)
