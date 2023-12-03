@@ -1,10 +1,10 @@
 {
   "name": "github-trending-x",
   "version": "1.0.0",
+  "author": "Thorsten Herfurtner",
   "description": "",
   "type": "module",
   "keywords": [],
-  "author": "Thorsten Herfurtner",
   "license": "ISC",
   "workspaces": [
     "packages/*"

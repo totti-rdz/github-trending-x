@@ -1,6 +1,9 @@
 {
   "name": "@github-trending-x/client",
   "version": "0.0.0",
+  "author": "Thorsten Herfurtner",
+  "description": "",
+  "license": "ISC",
   "type": "module",
   "scripts": {
     "dev": "vite",
