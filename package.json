@@ -12,10 +12,12 @@
   "scripts": {
     "dev:client": "npm run dev -w packages/client",
     "dev:server": "npm run dev -w packages/server",
-    "dev": "npm run dev:client & npm run dev:server",
+    "dev:shared": "npm run dev -w packages/shared",
+    "dev": "npm run dev:client & npm run dev:server & npm run dev:shared",
     "build:client": "npm run build -w packages/client",
     "build:server": "npm run build -w packages/server",
-    "build": "npm run build:client && npm run build:server",
+    "build:shared": "npm run build -w packages/shared",
+    "build": "npm run build:shared && npm run build:client && npm run build:server",
     "start": "node ./packages/server/dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
