@@ -5,8 +5,10 @@
   "description": "",
   "keywords": [],
   "license": "ISC",
-  "main": "index.js",
+  "main": "dist/src/index.js",
   "scripts": {
+    "dev": "tsc -w",
+    "build": "tsc --build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {},
