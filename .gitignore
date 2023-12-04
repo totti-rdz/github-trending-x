@@ -1,5 +1,6 @@
 /node_modules
 
 packages/server/dist
+packages/shared/dist
 
 .env
