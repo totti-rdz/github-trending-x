@@ -6,7 +6,7 @@ import { useRepositories } from '../../hooks/useRepositories.ts';
 import RepositoryCard from '../../components/RepositoryCard/index.tsx';
 import Title from '../../components/Title/index.tsx';
 import { getHttpCodeMessage } from '../../utils/getHttpCodeMessage.ts';
-import LanguageSpokenSelect from '../../components/LanguageSpokenSelect/index.tsx/index.tsx';
+import LanguageSpokenSelect from '../../components/LanguageSpokenSelect/index.tsx';
 
 const Home = () => {
   const [language, setLanguage] = useState('');
