@@ -14,11 +14,11 @@ type Props = {
 };
 
 const MenuMobile = ({ id, isOpen, links, toggleMenu }: Props) => {
-  if (!isOpen) return <></>;
-
   return (
     <div
-      className="absolute left-0 top-0 z-40 h-full w-full bg-background pb-24 pt-12 duration-500"
+      className={`absolute left-0 z-40 h-full w-full bg-background pb-24 pt-12 transition-all duration-500 ease-in-out ${
+        isOpen ? 'top-0' : 'top-full'
+      }`}
       onClick={toggleMenu}
     >
       <nav className="my-10" aria-label="primary" id={id}>
