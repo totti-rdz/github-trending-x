@@ -4,9 +4,9 @@ import Title from '../../components/Title';
 const About = () => {
   return (
     <Layout>
-      <div className="grid justify-center">
+      <div className="grid justify-center p-5">
         <Title text="About" />
-        <div className="my-5 w-[65ch]">
+        <div className="my-5 max-w-[65ch]">
           <h2 className="mb-4 text-2xl font-bold text-accent-600">
             This project:
           </h2>
