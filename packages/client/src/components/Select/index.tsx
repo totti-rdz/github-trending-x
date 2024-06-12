@@ -19,7 +19,7 @@ const Select = ({ label, name, onChange, options, value }: Props) => {
       <select
         name={name}
         id={name + '-select'}
-        className="block rounded-lg bg-accent-600 px-2 py-1"
+        className="block w-full rounded-lg bg-accent-600 px-2 py-1"
         value={value}
         onChange={onChange}
       >

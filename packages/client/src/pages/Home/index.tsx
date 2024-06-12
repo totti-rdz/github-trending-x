@@ -21,7 +21,7 @@ const Home = () => {
   return (
     <Layout>
       <Title text="GitHub Trending Repositories" />
-      <div className="mx-auto my-5 flex flex-col justify-center gap-2 sm:flex-row">
+      <div className="mx-auto my-5 grid grid-cols-1 justify-center gap-2 sm:grid-cols-2">
         <LanguageSpokenSelect
           currentSpokenLanguage={spokenLanguage}
           setCurrentSpokenLanguage={setSpokenLanguage}
