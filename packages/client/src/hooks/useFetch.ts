@@ -23,7 +23,7 @@ export const useFetch = <T>(
       } catch (error) {
         console.error('Error fetching data:', error);
       } finally {
-        // only setIsLoading to false if request was not aborted - fix for React Strict Mode aborting request while mounting twice
+        // Only set isLoading to false if request was not aborted due to React Strict Mode mounting twice and aborting the first request resulting in an error displaying in the UI
         if (!apiService.isAborted) {
           setIsLoading(false);
         }
