@@ -8,6 +8,8 @@
   --background-secondary: #e6e6e6;
 
   --accent-600: #9333ea;
+
+  overflow: hidden;
 }
 
 :root.dark {
