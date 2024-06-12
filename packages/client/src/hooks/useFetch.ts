@@ -13,8 +13,8 @@ export const useFetch = <T>(
     const apiService = new ApiService();
 
     const fetchData = async () => {
+      setIsLoading(true);
       try {
-        setIsLoading(true);
         const [data, status] = await apiService.fetch<T>(url);
         if (!!data) setData(data);
         // if data is falsy, reset to initial value
