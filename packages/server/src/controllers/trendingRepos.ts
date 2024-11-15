@@ -2,7 +2,12 @@ import { Request, Response } from 'express';
 import Scraper from '../services/scraper';
 import { QueryParamsHelper } from '../utils/QueryParamsHelper';
 
-import {isEven} from '@github-trending-x/shared'
+import { isEven } from '@github-trending-x/shared';
+import { TestType } from '@github-trending-x/shared/src/types';
+
+const test: TestType = {
+  foo: 'bar',
+};
 
 export class RepoController {
   public static async getRepos(req: Request, res: Response) {
@@ -30,6 +35,7 @@ export class RepoController {
     console.log("TEST");
     console.log(isEven("hello world"));
     console.log(isEven(30));
+    console.log(test.foo);
     console.log("#########");
     const scraper = await new Scraper().init();
     const result = await scraper.getLanguages();
