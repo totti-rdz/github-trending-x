@@ -1,6 +1,5 @@
+import { Language } from '@github-trending-x/shared/src/types';
 import { useFetch } from './useFetch';
-
-export type Language = { label: string; value: string };
 
 export const useSpokenLanguageOptions = () => {
   const [spokenLanguageOptions, isLoading] = useFetch<Language[]>(

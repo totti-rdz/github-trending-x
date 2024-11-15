@@ -3,6 +3,7 @@ import scrapeUrl from '../utils/scrapeUrl';
 import { logger } from './logger';
 import { deduplicateArrayOfObjects } from '../utils/deduplicateArrayOfObjects';
 import { concatToUrl } from '../utils/concatToUrl';
+import { Developer, Language, Repo } from '@github-trending-x/shared/src/types';
 
 const baseUrl = 'https://github.com/trending';
 
@@ -31,33 +32,6 @@ const selectors = {
     'p.mb-3.d-flex.flex-items-center span.Truncate span.Truncate-text',
   developerDateJoined:
     'div.f5.color-fg-muted.my-2.my-md-0 p.mb-3:has(svg.octicon-clock)',
-};
-
-export type Language = { label: string; value: string };
-export type Repo = {
-  id: number;
-  owner: string;
-  title: string;
-  description: string;
-  stars: number;
-  forks: number;
-  link: string | undefined;
-  ownerImgSrc: string | undefined;
-};
-
-type Developer = {
-  avatarImgSrc: string | undefined;
-  company: string;
-  dateJoined?: string;
-  link: string | undefined;
-  id: number;
-  name: string;
-  popularRepo: {
-    title: string;
-    description?: string;
-    link?: string;
-  };
-  userName: string;
 };
 
 export default class Scraper {

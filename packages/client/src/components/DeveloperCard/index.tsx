@@ -1,4 +1,4 @@
-import { Developer } from '../../hooks/useDevelopers';
+import { Developer } from '@github-trending-x/shared/src/types';
 import BuildingIcon from '../icons/BuildingIcon';
 import ClockIcon from '../icons/ClockIcon';
 import FlameIcon from '../icons/FlameIcon';

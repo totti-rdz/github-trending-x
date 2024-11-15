@@ -1,20 +1,7 @@
 import { useFetch } from './useFetch';
+import { Repo } from '@github-trending-x/shared/src/types';
 
-export type Repo = {
-  description: string;
-  forks: number;
-  id: number;
-  link: string;
-  owner: string;
-  ownerImgSrc: string;
-  stars: number;
-  title: string;
-};
-
-export const useRepositories = (
-  language: string,
-  spokenLanguage: string = ''
-) => {
+export const useRepositories = (language: string, spokenLanguage = '') => {
   const path =
     '/api/trending-repositories/' +
     language +
