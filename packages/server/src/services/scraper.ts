@@ -2,7 +2,7 @@ import { AnyNode, Cheerio, CheerioAPI, load } from 'cheerio';
 import scrapeUrl from '../utils/scrapeUrl';
 import { logger } from './logger';
 import { deduplicateArrayOfObjects } from '../utils/deduplicateArrayOfObjects';
-import { concatUrl } from '../utils/concatStrings';
+import { concatToUrl } from '../utils/concatToUrl';
 
 const baseUrl = 'https://github.com/trending';
 
@@ -178,7 +178,7 @@ export default class Scraper {
     if (!!queryParams && !queryParams.startsWith('?'))
       queryParams = '?' + queryParams;
 
-    const url = concatUrl(baseUrl, path, language, queryParams);
+    const url = concatToUrl(baseUrl, path, language, queryParams);
 
     const html = await scrapeUrl(url);
     return load(html);
