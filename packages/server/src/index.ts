@@ -40,7 +40,6 @@ app.listen(port, () => {
     logger.info(
       `NODE_ENV is set to "${environment}". It is recommended to set it to "production" when running in production mode.`
     );
-    return;
   }
   console.log(`Example app listening on port ${port}`);
 });
