@@ -25,4 +25,3 @@ export type Developer = {
 };
 
 export type Language = { label: string; value: string };
-

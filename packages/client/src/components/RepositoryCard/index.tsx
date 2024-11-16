@@ -1,4 +1,4 @@
-import { Repo } from "@github-trending-x/shared/src/types";
+import { Repo } from '@github-trending-x/shared/src/types';
 
 type Props = {
   repo: Repo;

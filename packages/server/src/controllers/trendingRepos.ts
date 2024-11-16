@@ -26,11 +26,11 @@ export class RepoController {
     res.send(result);
   }
   public static async getLanguages(_: Request, res: Response) {
-    console.log("#########");
-    console.log("TEST");
-    console.log(isEven("hello world"));
+    console.log('#########');
+    console.log('TEST');
+    console.log(isEven('hello world'));
     console.log(isEven(30));
-    console.log("#########");
+    console.log('#########');
     const scraper = await new Scraper().init();
     const result = await scraper.getLanguages();
     res.send(result);

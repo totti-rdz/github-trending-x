@@ -10,7 +10,7 @@ const About = () => {
           <h2 className="mb-4 text-2xl font-bold text-accent-600">
             This project:
           </h2>
-          <p className='text-pretty'>
+          <p className="text-pretty">
             A monorepo featuring an Express backend and a single-page React
             application powered by Vite, all in TypeScript - with the main focus
             on learning, e.g. web scraping with cheerio.

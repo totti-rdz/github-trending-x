@@ -10,7 +10,7 @@ export const routes = () => {
   router.use(trendingReposRouter);
 
   router.get('/health', (_, res) => {
-    res.status(200).send("ok");
+    res.status(200).send('ok');
   });
 
   router.get('*', (_, res) => {

@@ -1,11 +1,5 @@
 {
-    "ext": "ts,json",
-    "watch": [
-      "src",
-      "../shared/src"
-    ],
-    "ignore": [
-      "node_modules"
-    ]
-  }
-  
+  "ext": "ts,json",
+  "watch": ["src", "../shared/src"],
+  "ignore": ["node_modules"]
+}
