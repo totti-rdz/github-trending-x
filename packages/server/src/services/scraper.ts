@@ -1,4 +1,5 @@
-import { AnyNode, Cheerio, CheerioAPI, load } from 'cheerio';
+import { Cheerio, CheerioAPI, load } from 'cheerio';
+import { AnyNode } from 'domhandler';
 import scrapeUrl from '../utils/scrapeUrl';
 import { logger } from './logger';
 import { deduplicateArrayOfObjects } from '../utils/deduplicateArrayOfObjects';
