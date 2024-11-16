@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "author": "Thorsten Herfurtner",
   "description": "",
+  "engines": {
+    "node": ">=18.17.0"
+  },
   "keywords": [],
   "license": "ISC",
   "scripts": {
