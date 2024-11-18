@@ -21,7 +21,7 @@ const Home = () => {
   return (
     <Layout>
       <Title text="GitHub Trending Repositories" />
-      <div className="mx-auto my-5 grid grid-cols-1 justify-center gap-2 sm:grid-cols-2">
+      <div className="mx-auto my-5 grid w-80 grid-cols-1 justify-center gap-2 sm:w-[65ch] sm:grid-cols-2">
         <LanguageSpokenSelect
           currentSpokenLanguage={spokenLanguage}
           setCurrentSpokenLanguage={setSpokenLanguage}
@@ -36,7 +36,7 @@ const Home = () => {
           <Loading size="lg" />
         ) : (
           <>
-            {!!repositories ? (
+            {repositories ? (
               <div className="no-scrollbar space-y-5 overflow-auto">
                 {repositories.map((repo) => (
                   <RepositoryCard repo={repo} key={repo.id} />

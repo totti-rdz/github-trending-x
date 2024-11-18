@@ -18,7 +18,7 @@ const LanguageSelect = ({ currentLanguage, setCurrentLanguage }: Props) => {
     setCurrentLanguage(event.target.value);
 
   return (
-    <div className="">
+    <div className="h-14 grid place-content-center">
       {isLoading ? (
         <Loading />
       ) : (
